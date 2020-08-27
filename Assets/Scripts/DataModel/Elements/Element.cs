@@ -9,5 +9,6 @@ namespace DataModel
     /// </summary>
     public abstract class Element
     {
+        string name;
     }
 }

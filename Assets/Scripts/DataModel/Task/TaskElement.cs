@@ -7,7 +7,7 @@ namespace DataModel
     /// <summary>
     /// Единица сценария, описывающая элемент, его целевое состояние и порядок выполнения
     /// </summary>
-    class TaskElement
+    public class TaskElement
     {
         private Element element;
         private TargetState targetState;
