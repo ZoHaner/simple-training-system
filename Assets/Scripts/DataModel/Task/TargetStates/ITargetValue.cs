@@ -7,8 +7,8 @@ namespace DataModel
     /// <summary>
     /// Базовый класс для целевого состояния объекта
     /// </summary>
-    abstract class TargetState
+    public interface ITargetValue<T> : ITask
     {
-
+        bool IsReached(T value);
     }
 }

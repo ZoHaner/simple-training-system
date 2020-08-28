@@ -10,7 +10,7 @@ namespace DataModel
     public class TaskElement
     {
         private Element element;
-        private TargetState targetState;
+        private ITask task;
         private int order;
     }
 }
