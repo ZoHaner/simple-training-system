@@ -28,6 +28,22 @@ namespace DataModel
             maxZ = maxPos.z;
         }
 
+        public PositionProperty(MoveableElement moveableElement)
+        {
+            var locks = moveableElement.GetLocks();
+            this.lockX = locks[0];
+            this.lockY = locks[1];
+            this.lockZ = locks[2];
+            var minValues = moveableElement.GetMinValues();
+            minX = minValues.x;
+            minY = minValues.y;
+            minZ = minValues.z;
+            var maxValues = moveableElement.GetMaxValues();
+            maxX = maxValues.x;
+            maxY = maxValues.y;
+            maxZ = maxValues.z;
+        }
+
         public void SetPosition(Vector3 newPos)
         {
             Vector3 curPos = Position;

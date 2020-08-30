@@ -7,13 +7,13 @@ namespace DataModel
     /// <summary>
     /// Базовый класс для всех частей устройства
     /// </summary>
-    public class Element
+    public class DeviceElement
     {
-        public IProperty[] Properties { get; set; }
-
-        public Element(IProperty[] properties)
+        public List<IProperty> Properties { get; private set; } = new List<IProperty>();
+        
+        public void AddProperty(IProperty property)
         {
-            this.Properties = properties;
+            Properties.Add(property);
         }
     }
 }

@@ -28,6 +28,22 @@ namespace DataModel
             maxZ = maxRot.z;
         }
 
+        public RotationProperty(RotatableElement rotatableElement)
+        {
+            var locks = rotatableElement.GetLocks();
+            this.lockX = locks[0];
+            this.lockY = locks[1];
+            this.lockZ = locks[2];
+            var minValues = rotatableElement.GetMinValues();
+            minX = minValues.x;
+            minY = minValues.y;
+            minZ = minValues.z;
+            var maxValues = rotatableElement.GetMaxValues();
+            maxX = maxValues.x;
+            maxY = maxValues.y;
+            maxZ = maxValues.z;
+        }
+
         public void SetRotation(Vector3 newRot)
         {
             Vector3 curRot = Rotation;

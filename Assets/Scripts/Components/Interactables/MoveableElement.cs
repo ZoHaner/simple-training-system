@@ -26,6 +26,21 @@ public class MoveableElement : InteractableElement
         }
     } 
 
+    public bool[] GetLocks()
+    {
+        return new bool[3] { lockX, lockY, lockZ };
+    }
+
+    public Vector3 GetMinValues()
+    {
+        return new Vector3(minX, minY, minZ);
+    }
+
+    public Vector3 GetMaxValues()
+    {
+        return new Vector3(maxX, maxY, maxZ);
+    }
+
     private void OnMouseDrag()
     {
         deviceController.OnDrag(gameObject.name);

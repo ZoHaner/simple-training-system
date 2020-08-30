@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 28945287138396895}
   - component: {fileID: 1175002796595061887}
   - component: {fileID: 3282405731505071163}
+  - component: {fileID: 1225449173421391472}
   m_Layer: 0
   m_Name: ShiftThing
   m_TagString: Untagged
@@ -301,6 +302,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86a16b2fbc8cc154bae30c9505ee4d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockX: 0
+  lockY: 0
+  lockZ: 0
+  minX: 0
+  maxX: 0
+  minY: 0
+  maxY: 0
+  minZ: 0
+  maxZ: 0
+--- !u!114 &1225449173421391472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058356259684671925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba32d4e045cb98043a0df707e1a57d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lockX: 0

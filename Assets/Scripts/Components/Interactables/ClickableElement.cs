@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using DataModel;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ClickableElement : InteractableElement
 {
+    [SerializeField] private ButtonState buttonState;
+
     private DeviceController deviceController;
+    
 
     private void Start()
     {
@@ -17,6 +21,11 @@ public class ClickableElement : InteractableElement
         {
             Debug.LogError($"RotatableElement : DeviceController не найден");
         }
+    }
+
+    public ButtonState GetButtonState()
+    {
+        return buttonState;
     }
 
     private void OnMouseUp()

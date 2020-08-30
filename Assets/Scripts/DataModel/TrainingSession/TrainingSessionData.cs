@@ -16,7 +16,7 @@ namespace DataModel
 
         private int currentTaskIndex;
         private Task[] tasks;
-        private Dictionary<string, Element> deviceElements;
+        private Dictionary<string, DeviceElement> deviceElements = new Dictionary<string, DeviceElement>();
         
         private float startTime;
         private int errorsCount;
@@ -30,14 +30,44 @@ namespace DataModel
         /// <summary>
         /// Загружаем элементы нового устройства
         /// </summary>
-        /// <param name="interactableElements">Элементы устройства с компонентом InteractableElement</param>
+        /// <param name="interactableElements">Объекты сцены с компонентом InteractableElement</param>
         public void LoadNewDevice(InteractableElement[] interactableElements)
         {
-            foreach (var element in interactableElements)
+            foreach (var sceneElement in interactableElements)
             {
-                var name = element.name;
+                DeviceElement dataElement;
+
+                // Проверяем, наличие элемента в списке
+                if (!deviceElements.TryGetValue(sceneElement.name, out dataElement))
+                {
+                    dataElement = new DeviceElement();
+                    deviceElements.Add(sceneElement.name, dataElement);
+                }
+
+                // Преобразуем из компонентов сцены в хранимый формат данных
+                if(sceneElement is ClickableElement) 
+                {
+                    ClickableElement clickableElement = (ClickableElement)sceneElement;
+                    ButtonProperty bp = new ButtonProperty(clickableElement);
+                    dataElement.AddProperty(bp);
+                }
+
+                if(sceneElement is MoveableElement)
+                {
+                    MoveableElement moveableElement = (MoveableElement)sceneElement;
+                    PositionProperty pp = new PositionProperty(moveableElement);
+                    dataElement.AddProperty(pp);
+                }
+
+                if (sceneElement is RotatableElement)
+                {
+                    RotatableElement rotatableElement = (RotatableElement)sceneElement;
+                    RotationProperty rp = new RotationProperty(rotatableElement);
+                    dataElement.AddProperty(rp);
+                }
+
             }
-            // Парсим компоненты и заполняем deviceElements и tasks
+            // Парсим компоненты и заполняем tasks
         }
         
         public void ClearSessionData()

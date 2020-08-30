@@ -6,7 +6,7 @@ namespace DataModel
 {
     public class TaskElement
     {
-        private Element element;
+        private DeviceElement element;
         private ITask task;
         private bool isDone;
     }

@@ -13,6 +13,11 @@ namespace DataModel
             ButtonState = initState;
         }
 
+        public ButtonProperty(ClickableElement clickableElement)
+        {
+            ButtonState = clickableElement.GetButtonState();
+        }
+
         public void Switch()
         {
             if (ButtonState == 0) ButtonState = (ButtonState)1;
