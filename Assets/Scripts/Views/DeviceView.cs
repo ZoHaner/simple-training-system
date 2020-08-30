@@ -10,6 +10,18 @@ public class DeviceView : MonoBehaviour
 {
     //private controller
 
+    private Vector2 mousePosition;
+
+    private void Start()
+    {
+        mousePosition = Input.mousePosition;
+    }
+
+    private void LateUpdate()
+    {
+        mousePosition = Input.mousePosition;
+    }
+
     #region Setters
     public void SetPosition(GameObject gameObject, Vector3 position)
     {
@@ -32,17 +44,12 @@ public class DeviceView : MonoBehaviour
     #endregion
 
     #region Senders
-    private void Update()
+    public void OnDrag(string name)
     {
-        
+        // controller -> name, , // Input.mousePoisition - mousePosition
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnEndDrag(string name, Vector2 delta)
+    public void OnEndDrag(string name)
     {
         throw new System.NotImplementedException();
     }
@@ -51,7 +58,6 @@ public class DeviceView : MonoBehaviour
     {
         throw new System.NotImplementedException();
     }
-
 
     #endregion
 }
