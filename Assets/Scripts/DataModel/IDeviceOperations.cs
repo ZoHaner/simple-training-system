@@ -6,8 +6,8 @@ namespace DataModel
 {
     public interface IDeviceOperations
     {
-        void TryRotate();
-        void TryMove();
-        void TryClick();
+        void TryRotate(string deviceName, Vector2 mouseDelta);
+        void TryMove(string deviceName, Vector2 mouseDelta);
+        void TryClick(string deviceName);
     }
 }

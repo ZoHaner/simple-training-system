@@ -8,13 +8,13 @@ namespace DataModel
     /// <summary>
     /// Класс хранит информацию о тренировочной сессии
     /// </summary>
-    public class TrainingSession
+    public class TrainingSessionData
     {
         private List<TaskElement> task;
         private float startTime;
         private int errorsCount;
 
-        public TrainingSession(float startTime, List<TaskElement> task)
+        public TrainingSessionData(float startTime, List<TaskElement> task)
         {
             this.startTime = startTime;
             this.task = task;
