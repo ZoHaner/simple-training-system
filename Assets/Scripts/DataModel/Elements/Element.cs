@@ -7,8 +7,13 @@ namespace DataModel
     /// <summary>
     /// Базовый класс для всех частей устройства
     /// </summary>
-    public abstract class Element
+    public class Element
     {
-        string name;
+        IProperty[] properties;
+
+        public Element(IProperty[] properties)
+        {
+            this.properties = properties;
+        }
     }
 }
