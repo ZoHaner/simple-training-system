@@ -10,17 +10,17 @@ namespace DataModel
     /// </summary>
     public class TrainingSessionData
     {
-        private List<TaskElement> task;
+        private Task[] tasks;
         private float startTime;
         private int errorsCount;
 
-        public TrainingSessionData(float startTime, List<TaskElement> task)
+        public TrainingSessionData(float startTime, Task[] task)
         {
             this.startTime = startTime;
-            this.task = task;
+            this.tasks = task;
         }
 
-        public TaskElement GetCurrentTask()
+        public Task GetCurrentTask()
         {
             return null;
         }
