@@ -6,6 +6,7 @@ using DataModel;
 public class DeviceController : MonoBehaviour
 {
     private IDeviceOperations model;
+    [SerializeField] private DeviceView view;
 
     // ToDo: Для тестов
     private void Start()
