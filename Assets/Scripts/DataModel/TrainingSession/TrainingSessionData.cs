@@ -57,6 +57,11 @@ namespace DataModel
         {
             throw new System.NotImplementedException();
         }
+
+        public void EndDrag(string deviceName, Vector2 mousePosition)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
 
 

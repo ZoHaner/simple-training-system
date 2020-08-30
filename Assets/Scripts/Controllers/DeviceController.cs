@@ -5,15 +5,38 @@ using DataModel;
 
 public class DeviceController : MonoBehaviour
 {
-    IDeviceOperations deviceOperations;
+    private IDeviceOperations model;
+
+    // ToDo: Для тестов
+    private void Start()
+    {
+        TrainingSessionData session = new TrainingSessionData(0);
+        SetModel(session);
+    }
+
+    public void SetModel(IDeviceOperations model)
+    {
+        this.model = model;
+        model.OnElementsParamsChanged += OnElementsParamsChanged;
+    }
 
     public void OnClick(string name)
     {
-        deviceOperations.Click(name);
+        model.Click(name);
     }
 
     public void OnDrag(string name)
     {
-        deviceOperations.Drag(name, Input.mousePosition);
+        model.Drag(name, Input.mousePosition);
+    }
+
+    public void OnEndDrag(string name)
+    {
+        model.EndDrag(name, Input.mousePosition);
+    }
+
+    private void OnElementsParamsChanged()
+    {
+        // -> view 
     }
 }

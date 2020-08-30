@@ -4,9 +4,14 @@ using UnityEngine;
 
 namespace DataModel
 {
+    public delegate void ElementsParamsChanged();
+
     public interface IDeviceOperations
     {
-        void Drag(string deviceName, Vector2 mouseDelta);
+        event ElementsParamsChanged OnElementsParamsChanged;
+
+        void Drag(string deviceName, Vector2 mousePosition);
+        void EndDrag(string deviceName, Vector2 mousePosition);
         void Click(string deviceName);
     }
 }
