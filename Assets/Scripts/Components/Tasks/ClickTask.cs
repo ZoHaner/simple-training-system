@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace Components
 {
+    [RequireComponent(typeof(ClickableElement))]
     public class ClickTask : Task
     {
-        ButtonState targetState;
+        [Header("Задание:")]
+        [SerializeField] ButtonState targetState;
     }
 }

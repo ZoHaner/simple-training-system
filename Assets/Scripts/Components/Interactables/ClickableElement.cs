@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ClickableElement : InteractableElement
 {
-    [SerializeField] private ButtonState buttonState;
+    [SerializeField] private ButtonState initialState;
 
     private DeviceController deviceController;
     
@@ -25,7 +25,7 @@ public class ClickableElement : InteractableElement
 
     public ButtonState GetButtonState()
     {
-        return buttonState;
+        return initialState;
     }
 
     private void OnMouseUp()
