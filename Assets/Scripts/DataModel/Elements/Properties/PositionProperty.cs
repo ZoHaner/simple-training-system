@@ -2,62 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionProperty : IProperty
+namespace DataModel
 {
-    public Vector3 Position { get; private set; }
-    private bool lockX;
-    private bool lockY;
-    private bool lockZ;
-    private float minX, maxX;
-    private float minY, maxY;
-    private float minZ, maxZ;
-
-    public PositionProperty(Vector3 initPosition, bool lockX, bool lockY, bool lockZ, Vector3 minPos, Vector3 maxPos)
+    public class PositionProperty : IProperty
     {
-        Position = initPosition;
-        this.lockX = lockX;
-        this.lockY = lockY;
-        this.lockZ = lockZ;
-        minX = minPos.x;
-        minY = minPos.y;
-        minZ = minPos.z;
-        maxX = maxPos.x;
-        maxY = maxPos.y;
-        maxZ = maxPos.z;
-    }
+        public Vector3 Position { get; private set; }
+        private bool lockX;
+        private bool lockY;
+        private bool lockZ;
+        private float minX, maxX;
+        private float minY, maxY;
+        private float minZ, maxZ;
 
-    public void SetPosition(Vector3 newPos)
-    {
-        Vector3 curPos = Position;
-
-        if(!lockX)
+        public PositionProperty(Vector3 initPosition, bool lockX, bool lockY, bool lockZ, Vector3 minPos, Vector3 maxPos)
         {
-            PutInsideBorders(ref newPos.x, minX, maxX);
-            curPos.x = newPos.x;
-        }
-        if (!lockY)
-        {
-            PutInsideBorders(ref newPos.y, minY, maxY);
-            curPos.y = newPos.y;
-        }
-        if (!lockZ)
-        {
-            PutInsideBorders(ref newPos.z, minZ, maxZ);
-            curPos.z = newPos.z;
+            Position = initPosition;
+            this.lockX = lockX;
+            this.lockY = lockY;
+            this.lockZ = lockZ;
+            minX = minPos.x;
+            minY = minPos.y;
+            minZ = minPos.z;
+            maxX = maxPos.x;
+            maxY = maxPos.y;
+            maxZ = maxPos.z;
         }
 
-        Position = curPos;
-    }
+        public void SetPosition(Vector3 newPos)
+        {
+            Vector3 curPos = Position;
 
-    private void PutInsideBorders(ref float value, float min, float max)
-    {
-        if(value < min)
-        {
-            value = min;
+            if (!lockX)
+            {
+                PutInsideBorders(ref newPos.x, minX, maxX);
+                curPos.x = newPos.x;
+            }
+            if (!lockY)
+            {
+                PutInsideBorders(ref newPos.y, minY, maxY);
+                curPos.y = newPos.y;
+            }
+            if (!lockZ)
+            {
+                PutInsideBorders(ref newPos.z, minZ, maxZ);
+                curPos.z = newPos.z;
+            }
+
+            Position = curPos;
         }
-        else if(value > max)
+
+        private void PutInsideBorders(ref float value, float min, float max)
         {
-            value = max;
+            if (value < min)
+            {
+                value = min;
+            }
+            else if (value > max)
+            {
+                value = max;
+            }
         }
     }
 }

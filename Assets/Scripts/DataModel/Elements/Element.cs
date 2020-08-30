@@ -9,11 +9,11 @@ namespace DataModel
     /// </summary>
     public class Element
     {
-        IProperty[] properties;
+        public IProperty[] Properties { get; set; }
 
         public Element(IProperty[] properties)
         {
-            this.properties = properties;
+            this.Properties = properties;
         }
     }
 }
