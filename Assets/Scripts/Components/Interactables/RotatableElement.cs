@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveableElement : InteractableElement
+public class RotatableElement : InteractableElement
 {
     private DeviceController deviceController;
 
@@ -22,9 +22,9 @@ public class MoveableElement : InteractableElement
         }
         else
         {
-            Debug.LogError($"MoveableElement : DeviceController не найден");
+            Debug.LogError($"RotatableElement : DeviceController не найден");
         }
-    } 
+    }
 
     private void OnMouseDrag()
     {
