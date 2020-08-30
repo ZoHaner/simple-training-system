@@ -11,7 +11,7 @@ public class DeviceController : MonoBehaviour
     // ToDo: Для тестов
     private void Start()
     {
-        TrainingSessionData session = new TrainingSessionData(0);
+        TrainingSessionData session = new TrainingSessionData();
         SetModel(session);
     }
 

@@ -21,7 +21,7 @@ namespace DataModel
         private float startTime;
         private int errorsCount;
 
-        public TrainingSessionData(float startTime)
+        public void StartSession(float startTime)
         {
             this.startTime = startTime;
         }
@@ -30,11 +30,13 @@ namespace DataModel
         /// <summary>
         /// Загружаем элементы нового устройства
         /// </summary>
-        /// <param name="deviceElements"></param>
-        public void LoadNewDevice(Object[] deviceElements)
+        /// <param name="interactableElements">Элементы устройства с компонентом InteractableElement</param>
+        public void LoadNewDevice(InteractableElement[] interactableElements)
         {
-            ClearSessionData();
-
+            foreach (var element in interactableElements)
+            {
+                var name = element.name;
+            }
             // Парсим компоненты и заполняем deviceElements и tasks
         }
         

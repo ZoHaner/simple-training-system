@@ -6,7 +6,7 @@ namespace DataModel
 {
     public interface ISessionOperations
     {
-        void LoadNewDevice(Object[] deviceElements);
+        void LoadNewDevice(InteractableElement[] interactableElements);
         void ClearSessionData();
     }
 }

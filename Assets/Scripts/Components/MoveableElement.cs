@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveableElement : MonoBehaviour, IInteractable
+public class MoveableElement : InteractableElement
 {
     private DeviceController deviceController;
 
