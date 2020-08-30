@@ -6,7 +6,7 @@ namespace DataModel
 {
     public interface ISessionOperations
     {
-        void SetNewTask(Object[] deviceElements);
-        void RestartTask();
+        void LoadNewDevice(Object[] deviceElements);
+        void ClearSessionData();
     }
 }

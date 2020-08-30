@@ -10,5 +10,10 @@ namespace DataModel
     public class Task
     {
         List<TaskElement> taskElements;
+
+        public Task()
+        {
+
+        }
     }
 }
