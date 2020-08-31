@@ -10,5 +10,13 @@ namespace Components
         [SerializeField] private uint executionOrder;
         [TextArea]
         [SerializeField] private string description;
+
+        public uint ExecutionOrder
+        {
+            get
+            {
+                return executionOrder;
+            }
+        }
     }
 }

@@ -9,6 +9,13 @@ namespace Components
     public class ClickTask : Task
     {
         [Header("Задание:")]
-        [SerializeField] ButtonState targetState;
+        [SerializeField] private ButtonState targetState;
+
+        public ButtonState GetTargetState()
+        {
+            return targetState;
+        }
     }
+
+    
 }

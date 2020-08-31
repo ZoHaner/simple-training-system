@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Components;
+using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -33,6 +35,9 @@ namespace DataModel
         /// <param name="interactableElements">Объекты сцены с компонентом InteractableElement</param>
         public void LoadNewDevice(InteractableElement[] interactableElements)
         {
+            // Создаем временный словарь для найденных задач
+            Dictionary<Components.Task, DeviceElement> tempTasks = new Dictionary<Components.Task, DeviceElement>();
+
             foreach (var sceneElement in interactableElements)
             {
                 DeviceElement dataElement;
@@ -51,14 +56,12 @@ namespace DataModel
                     ButtonProperty bp = new ButtonProperty(clickableElement);
                     dataElement.AddProperty(bp);
                 }
-
                 if(sceneElement is MoveableElement)
                 {
                     MoveableElement moveableElement = (MoveableElement)sceneElement;
                     PositionProperty pp = new PositionProperty(moveableElement);
                     dataElement.AddProperty(pp);
                 }
-
                 if (sceneElement is RotatableElement)
                 {
                     RotatableElement rotatableElement = (RotatableElement)sceneElement;
@@ -66,10 +69,59 @@ namespace DataModel
                     dataElement.AddProperty(rp);
                 }
 
+                // Ищем задачи в выбранном элементе
+                Components.Task[] tasks = sceneElement.gameObject.GetComponents<Components.Task>();
+
+                // И добавляем в словарь
+                foreach(var taskComponent in tasks)
+                {
+                    tempTasks.Add(taskComponent, dataElement);
+                }
             }
-            // Парсим компоненты и заполняем tasks
+
+            // Группируем задачи по порядку выполнения
+            var groupedTasks = from tempTask in tempTasks
+                                group tempTask by tempTask.Key.ExecutionOrder into g
+                                orderby g.Key
+                                select g;
+
+            tasks = new Task[groupedTasks.Count()];
+
+            int i = 0;
+            foreach (var task in groupedTasks)
+            {
+                Task taskData = new Task();
+
+                foreach (var subTask in task)
+                {
+                    if(subTask.Key is ClickTask)
+                    {
+                        ClickTask clickTask = (ClickTask)subTask.Key;
+                        ClickTaskData clickTaskData = new ClickTaskData(clickTask);
+                        TaskElement taskElement = new TaskElement(subTask.Value, clickTaskData);
+                        taskData.TaskElements.Add(taskElement);
+                    }
+                    else if(subTask.Key is RotateTask)
+                    {
+                        RotateTask rotateTask = (RotateTask)subTask.Key;
+                        RotateTaskData rotateTaskData = new RotateTaskData(rotateTask);
+                        TaskElement taskElement = new TaskElement(subTask.Value, rotateTaskData);
+                        taskData.TaskElements.Add(taskElement);
+                    }
+                    else if (subTask.Key is ShiftTask)
+                    {
+                        ShiftTask shiftTask = (ShiftTask)subTask.Key;
+                        ShiftTaskData shiftTaskData = new ShiftTaskData(shiftTask);
+                        TaskElement taskElement = new TaskElement(subTask.Value, shiftTaskData);
+                        taskData.TaskElements.Add(taskElement);
+                    }
+                }
+
+                tasks[i] = taskData;
+                i++;
+            }
         }
-        
+
         public void ClearSessionData()
         {
             currentTaskIndex = 0;
@@ -95,7 +147,5 @@ namespace DataModel
             throw new System.NotImplementedException();
         }
         #endregion
-
-        //private void 
     }
 }

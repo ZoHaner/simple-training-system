@@ -9,11 +9,6 @@ namespace DataModel
     /// </summary>
     public class Task
     {
-        List<TaskElement> taskElements;
-
-        public Task()
-        {
-
-        }
+        public List<TaskElement> TaskElements { get; set; }
     }
 }
