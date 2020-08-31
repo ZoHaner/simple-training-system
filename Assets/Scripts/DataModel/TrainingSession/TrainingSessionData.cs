@@ -14,7 +14,8 @@ namespace DataModel
     {
         public event ElementParamsChanged OnElementsParamsChanged;
         public event TrainingFinished OnTrainingFinished;
-        public event TrainingErrorAction OnTrainingErrorAction;
+        public event TaskError OnTaskError;
+        public event TaskCompleted OnTaskCompleted;
 
         private int currentTaskIndex;
         private Task[] tasks;
@@ -161,8 +162,17 @@ namespace DataModel
             DeviceElement deviceElement;
             if (deviceElements.TryGetValue(deviceName, out deviceElement))
             {
+                bool elementInTask = TaskChecker.CheckIfElementInTask(deviceElement, tasks[currentTaskIndex]);
+                if (!elementInTask)
+                {
+                    OnTaskError?.Invoke();
+                    return;
+                }
+
                 deviceElement.Click();
                 OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
+            
+                // + Проверки
             }
         }
 
@@ -172,10 +182,16 @@ namespace DataModel
             DeviceElement deviceElement;
             if (deviceElements.TryGetValue(deviceName, out deviceElement))
             {
+                bool elementInTask = TaskChecker.CheckIfElementInTask(deviceElement, tasks[currentTaskIndex]);
+                if(!elementInTask) 
+                { 
+                    OnTaskError?.Invoke();
+                    return;
+                }
+
                 deviceElement.Drag(deltaPos);
                 OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
             }
-
         }
         #endregion
     }

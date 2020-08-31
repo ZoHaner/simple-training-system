@@ -6,15 +6,20 @@ namespace DataModel
 {
     public class TaskElement
     {
-        private DeviceElement element;
-        private ITask task;
-        private bool isDone;
+        public DeviceElement Element { get; private set; }
+        public ITask Task { get; private set; }
+        public bool IsDone { get; private set; }
 
         public TaskElement(DeviceElement deviceElement, ITask task)
         {
-            element = deviceElement;
-            this.task = task;
-            isDone = false;
+            Element = deviceElement;
+            Task = task;
+            IsDone = false;
+        }
+
+        public void MarkAsDone()
+        {
+            IsDone = true;
         }
     }
 }
