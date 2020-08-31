@@ -9,6 +9,6 @@ namespace DataModel
     /// </summary>
     public class Task
     {
-        public List<TaskElement> TaskElements { get; set; }
+        public List<TaskElement> TaskElements { get; set; } = new List<TaskElement>();
     }
 }
