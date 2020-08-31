@@ -13,9 +13,10 @@ namespace DataModel
     public class TrainingSessionData : ISessionCallbacks, IDeviceOperations
     {
         public event ElementParamsChanged OnElementsParamsChanged;
-        public event TrainingFinished OnTrainingFinished;
+        public event TrainingCompleted OnTrainingCompleted;
         public event TaskError OnTaskError;
         public event TaskCompleted OnTaskCompleted;
+        public event MoveToNextTask OnMoveToNextTask;
 
         private int currentTaskIndex;
         private Task[] tasks;
@@ -122,6 +123,8 @@ namespace DataModel
                 tasks[i] = taskData;
                 i++;
             }
+
+            OnMoveToNextTask(currentTaskIndex + 1, tasks[currentTaskIndex].TaskElements[0].Task.Description);
         }
 
         public void ClearSessionData()
@@ -135,6 +138,11 @@ namespace DataModel
 
 
         #region Device Operations
+        /// <summary>
+        /// Обработка изменения положения и вращения объекта
+        /// </summary>
+        /// <param name="deviceName">Имя объекта на сцене</param>
+        /// <param name="mousePosition">Текущая позиция мыши</param>
         public void Drag(string deviceName, Vector2 mousePosition)
         {
             if (lastMousePosition != Vector2.zero)
@@ -145,6 +153,11 @@ namespace DataModel
             lastMousePosition = mousePosition;
         }
 
+        /// <summary>
+        /// Обработка окончания изменения положения и вращения объекта
+        /// </summary>
+        /// <param name="deviceName">Имя объекта на сцене</param>
+        /// <param name="mousePosition">Текущая позиция мыши</param>
         public void EndDrag(string deviceName, Vector2 mousePosition)
         {
             if (lastMousePosition != Vector2.zero)
@@ -154,9 +167,26 @@ namespace DataModel
 
             lastMousePosition = Vector2.zero;
 
-            // + Проверки
+            // Проверка на завершенность задачи и упражнения
+            if(TaskChecker.CheckIfTaskIsDone(tasks[currentTaskIndex]))
+            {
+                if(currentTaskIndex < tasks.Length - 1)
+                {
+                    currentTaskIndex++;
+                    OnTaskCompleted?.Invoke();
+                    OnMoveToNextTask?.Invoke(currentTaskIndex + 1, tasks[currentTaskIndex].TaskElements[0].Task.Description);
+                }
+                else
+                {
+                    OnTrainingCompleted?.Invoke(startTime, errorsCount);
+                }
+            }
         }
 
+        /// <summary>
+        /// Обработка нажатия на элемент
+        /// </summary>
+        /// <param name="deviceName"></param>
         public void Click(string deviceName)
         {
             DeviceElement deviceElement;
@@ -166,26 +196,41 @@ namespace DataModel
                 if (!elementInTask)
                 {
                     OnTaskError?.Invoke();
+                    errorsCount++;
                     return;
                 }
 
                 deviceElement.Click();
                 OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
-            
-                // + Проверки
+
+                // Проверка на завершенность задачи и упражнения
+                if (TaskChecker.CheckIfTaskIsDone(tasks[currentTaskIndex]))
+                {
+                    if (currentTaskIndex < tasks.Length - 1)
+                    {
+                        currentTaskIndex++;
+                        OnTaskCompleted?.Invoke();
+                        OnMoveToNextTask?.Invoke(currentTaskIndex + 1, tasks[currentTaskIndex].TaskElements[0].Task.Description);
+                    }
+                    else
+                    {
+                        OnTrainingCompleted?.Invoke(startTime, errorsCount);
+                    }
+                }
             }
         }
-
 
         private void DragElement(string deviceName, Vector2 deltaPos)
         {
             DeviceElement deviceElement;
             if (deviceElements.TryGetValue(deviceName, out deviceElement))
             {
+                // Перед Drag проверяем, на этот ли элемент нужно воздействовать
                 bool elementInTask = TaskChecker.CheckIfElementInTask(deviceElement, tasks[currentTaskIndex]);
                 if(!elementInTask) 
-                { 
+                {
                     OnTaskError?.Invoke();
+                    errorsCount++;
                     return;
                 }
 

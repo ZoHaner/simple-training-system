@@ -19,7 +19,7 @@ namespace DataModel
             foreach (var taskElement in task.TaskElements)
             {
                 // Смотрим только по невыполненным задачам
-                if(!taskElement.IsDone)
+                if (!taskElement.IsDone)
                 {
                     if (taskElement.Element == deviceElement)
                         return true;
@@ -27,6 +27,27 @@ namespace DataModel
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Проверка завершенности задачи типа Task
+        /// </summary>
+        /// <param name="task">Задача из массива задач</param>
+        public static bool CheckIfTaskIsDone(Task task)
+        {
+            int isDoneCount = 0;
+            foreach (var taskElement in task.TaskElements)
+            {
+                if (taskElement.CheckIsDone())
+                {
+                    isDoneCount++;
+                }
+            }
+
+            if (task.TaskElements.Count == isDoneCount)
+                return true;
+            else
+                return false;
         }
     }
 }

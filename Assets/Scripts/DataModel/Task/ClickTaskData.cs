@@ -1,11 +1,11 @@
 ﻿using Components;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DataModel
 {
-    public class ClickTaskData : ITask
+    public class ClickTaskData : TaskData
     {
         private ButtonState targetState;
 
@@ -17,6 +17,24 @@ namespace DataModel
         public ClickTaskData(ClickTask clickTask)
         {
             this.targetState = clickTask.GetTargetState();
+            Description = clickTask.Description;
+        }
+
+        public override bool IsDone(object value)
+        {
+            if(value is ButtonState)
+            {
+                var state = (ButtonState)value;
+                if(state == targetState)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else throw new TypeLoadException($"Тип {value.GetType()} не может быть обработан!");
         }
     }
 }

@@ -25,7 +25,7 @@ namespace DataModel
                     PositionProperty positionProperty = (PositionProperty)prop;
                     positionProperty.Move(ActionConvertor.ConvertToDeltaPosition(deltaPos));
                 }
-                if(prop is RotationProperty)
+                else if(prop is RotationProperty)
                 {
                     RotationProperty rotationProperty = (RotationProperty)prop;
                     rotationProperty.Rotate(ActionConvertor.ConvertToDeltaRotation(deltaPos));

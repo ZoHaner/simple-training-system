@@ -18,5 +18,13 @@ namespace Components
                 return executionOrder;
             }
         }
+
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+        }
     }
 }
