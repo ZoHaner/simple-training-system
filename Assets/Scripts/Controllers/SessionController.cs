@@ -6,34 +6,51 @@ using UnityEngine;
 public class SessionController : MonoBehaviour
 {
     private ISessionCallbacks model;
+    [SerializeField] private SessionView sessionView;
 
     public void SetModel(ISessionCallbacks model)
     {
         this.model = model;
 
-        model.OnTaskError += Model_OnTrainingErrorAction;
-        model.OnTaskCompleted += Model_OnTaskCompleted;
-        model.OnMoveToNextTask += Model_OnMoveToNextTask;
-        model.OnTrainingCompleted += Model_OnTrainingFinished;
+        model.OnTaskError += OnTrainingErrorAction;
+        model.OnMoveToNextTask += OnMoveToNextTask;
+        model.OnTrainingCompleted += OnTrainingFinished;
     }
 
-    private void Model_OnMoveToNextTask(int order, string description)
+    private void OnMoveToNextTask(int order, string description)
     {
+        sessionView.SetDescription(order + ". " + description);
         Debug.Log($"Model_OnMoveToNextTask : Next #{order}. Task - {description}");
     }
 
-    private void Model_OnTrainingFinished(float startTime, int errors)
+    private void OnTrainingFinished(float startTime, int errors)
     {
+        sessionView.SetActiveSessionEndScreen(true);
+        sessionView.SetFullTime(((int)(Time.time - startTime)).ToString());
+        sessionView.SetErrorsCount(errors.ToString());
+        sessionView.SetActiveSessionScreen(false);
         Debug.Log($"Model_OnTrainingFinished : Time - {Time.time - startTime}. Errors - {errors}");
     }
 
-    private void Model_OnTaskCompleted()
+    private void OnTrainingErrorAction()
     {
-        Debug.Log($"Model_OnTaskCompleted");
+        sessionView.SetActiveErrorScreen(true);
+        sessionView.SetActiveSessionScreen(false);
+        Debug.Log($"Model_OnTrainingErrorAction");
     }
 
-    private void Model_OnTrainingErrorAction()
+    public void ContinueSession()
     {
-        Debug.Log($"Model_OnTrainingErrorAction");
+        model.ContinueSession();
+    }
+
+    public void RestartSession()
+    {
+        model.RestartSession(Time.time);
+    }
+
+    public void CloseSession()
+    {
+        model.CloseSession();
     }
 }

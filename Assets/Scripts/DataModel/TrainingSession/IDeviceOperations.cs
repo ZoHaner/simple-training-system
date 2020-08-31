@@ -10,7 +10,7 @@ namespace DataModel
     {
         event ElementParamsChanged OnElementsParamsChanged;
 
-        void LoadNewDevice(InteractableElement[] interactableElements);
+        void LoadNewDevice(InteractableElement[] interactableElements, float startTime);
         void Drag(string deviceName, Vector2 mousePosition);
         void EndDrag(string deviceName, Vector2 mousePosition);
         void Click(string deviceName);

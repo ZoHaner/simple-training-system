@@ -26,7 +26,7 @@ public class DeviceController : MonoBehaviour
             sceneElements.Add(element.name, element.gameObject);
         }
 
-        model.LoadNewDevice(interactableElements);
+        model.LoadNewDevice(interactableElements, Time.time);
     }
 
     private void OnElementsParamsChanged(KeyValuePair<string, DeviceElement> element)

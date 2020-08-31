@@ -16,5 +16,9 @@ namespace DataModel
         event TaskError OnTaskError;
         event TaskCompleted OnTaskCompleted;
         event MoveToNextTask OnMoveToNextTask;
+
+        void ContinueSession();
+        void CloseSession();
+        void RestartSession(float startTime);
     }
 }

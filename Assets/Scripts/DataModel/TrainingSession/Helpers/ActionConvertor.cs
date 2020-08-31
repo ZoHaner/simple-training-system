@@ -14,9 +14,9 @@ public class ActionConvertor
     /// <returns></returns>
     public static Vector3 ConvertToDeltaPosition(Vector2 mouseDelta)
     {
-        float deltaX = mouseDelta.x * 0.002f;
-        float deltaY = mouseDelta.y * 0.001f;
-        float deltaZ = mouseDelta.y * 0.001f;
+        float deltaX = mouseDelta.x * 0.005f;
+        float deltaY = mouseDelta.y * 0.0025f;
+        float deltaZ = mouseDelta.y * 0.0025f;
         return new Vector3(deltaX, deltaY, deltaZ);
     }
 
@@ -29,7 +29,7 @@ public class ActionConvertor
     {
         float deltaX = mouseDelta.y * 0.1f;
         float deltaY = mouseDelta.x * 0.1f;
-        float deltaZ = mouseDelta.y * 0.2f;
+        float deltaZ = - mouseDelta.y * 0.2f;
         return new Vector3(deltaX, deltaY, deltaZ);
     }
 }

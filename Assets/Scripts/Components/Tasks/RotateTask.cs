@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Components
 {
+    [RequireComponent(typeof(RotatableElement))]
     public class RotateTask : Task
     {
         [Header("Задание:")]

@@ -18,6 +18,7 @@ namespace DataModel
         public event TaskCompleted OnTaskCompleted;
         public event MoveToNextTask OnMoveToNextTask;
 
+        private ModelState modelState = ModelState.NotInitialized;
         private int currentTaskIndex;
         private Task[] tasks;
         private Dictionary<string, DeviceElement> deviceElements = new Dictionary<string, DeviceElement>();
@@ -26,18 +27,21 @@ namespace DataModel
         private float startTime;
         private int errorsCount;
 
-        public void StartSession(float startTime)
-        {
-            this.startTime = startTime;
-        }
+        private InteractableElement[] initialStateDevice;
 
         #region Session Operations
+
         /// <summary>
         /// Загружаем элементы нового устройства
         /// </summary>
         /// <param name="interactableElements">Объекты сцены с компонентом InteractableElement</param>
-        public void LoadNewDevice(InteractableElement[] interactableElements)
+        public void LoadNewDevice(InteractableElement[] interactableElements, float startTime)
         {
+            // Запоминаем для возможного перезапуска
+            initialStateDevice = interactableElements;
+
+            this.startTime = startTime;
+
             // Создаем временный словарь для найденных задач
             Dictionary<Components.Task, DeviceElement> tempTasks = new Dictionary<Components.Task, DeviceElement>();
 
@@ -139,14 +143,45 @@ namespace DataModel
             }
 
             OnMoveToNextTask(currentTaskIndex + 1, tasks[currentTaskIndex].TaskElements[0].Task.Description);
+
+            modelState = ModelState.Run;
         }
 
-        public void ClearSessionData()
+        /// <summary>
+        /// Продолжаем сессию
+        /// </summary>
+        public void ContinueSession()
+        {
+            modelState = ModelState.Run;
+        }
+
+        /// <summary>
+        /// Обнуляем сессию
+        /// </summary>
+        public void CloseSession()
         {
             currentTaskIndex = 0;
             tasks = null;
             deviceElements.Clear();
             errorsCount = 0;
+
+            modelState = ModelState.NotInitialized;
+        }
+
+        /// <summary>
+        /// Перезагружаем сессию с начальными параметрами
+        /// </summary>
+        public void RestartSession(float startTime)
+        {
+            CloseSession();
+            LoadNewDevice(initialStateDevice, startTime);
+
+            foreach (var pair in deviceElements)
+            {
+                OnElementsParamsChanged?.Invoke(pair);
+            }
+
+            modelState = ModelState.Run;
         }
         #endregion
 
@@ -159,6 +194,8 @@ namespace DataModel
         /// <param name="mousePosition">Текущая позиция мыши</param>
         public void Drag(string deviceName, Vector2 mousePosition)
         {
+            if (modelState != ModelState.Run) return;
+
             if (lastMousePosition != Vector2.zero)
             {
                 DragElement(deviceName, mousePosition - lastMousePosition);
@@ -174,6 +211,8 @@ namespace DataModel
         /// <param name="mousePosition">Текущая позиция мыши</param>
         public void EndDrag(string deviceName, Vector2 mousePosition)
         {
+            if (modelState != ModelState.Run) return;
+
             if (lastMousePosition != Vector2.zero)
             {
                 DragElement(deviceName, mousePosition - lastMousePosition);
@@ -203,6 +242,8 @@ namespace DataModel
         /// <param name="deviceName"></param>
         public void Click(string deviceName)
         {
+            if (modelState != ModelState.Run) return;
+
             DeviceElement deviceElement;
             if (deviceElements.TryGetValue(deviceName, out deviceElement))
             {
@@ -210,6 +251,7 @@ namespace DataModel
                 if (!elementInTask)
                 {
                     OnTaskError?.Invoke();
+                    modelState = ModelState.Paused;
                     errorsCount++;
                     return;
                 }
@@ -229,6 +271,7 @@ namespace DataModel
                     else
                     {
                         OnTrainingCompleted?.Invoke(startTime, errorsCount);
+                        modelState = ModelState.Finished;
                     }
                 }
             }
@@ -244,6 +287,7 @@ namespace DataModel
                 if(!elementInTask) 
                 {
                     OnTaskError?.Invoke();
+                    modelState = ModelState.Paused;
                     errorsCount++;
                     return;
                 }
@@ -252,6 +296,16 @@ namespace DataModel
                 OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
             }
         }
+
+
         #endregion
     }
+
+    public enum ModelState
+    { 
+        NotInitialized,
+        Paused,
+        Run,
+        Finished
+}
 }

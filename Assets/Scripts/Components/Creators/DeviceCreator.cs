@@ -10,7 +10,7 @@ using UnityEngine;
 public class DeviceCreator : MonoBehaviour
 {
     [SerializeField] private GameObject[] devicePrefabs;
-    
+    private GameObject deviceObject;
     private DeviceController deviceController;
 
     private void Start()
@@ -30,13 +30,18 @@ public class DeviceCreator : MonoBehaviour
     {
         if(index <= devicePrefabs.Length - 1)
         {
-            GameObject device = Instantiate(devicePrefabs[index]);
-            InteractableElement[] deviceElements = device.GetComponentsInChildren<InteractableElement>();
+            deviceObject = Instantiate(devicePrefabs[index]);
+            InteractableElement[] deviceElements = deviceObject.GetComponentsInChildren<InteractableElement>();
             deviceController.LoadNewDevice(deviceElements);
         }
         else
         {
             throw new IndexOutOfRangeException("DeviceCreator : Префаба с таким индексом не существует!");
         }
+    }
+
+    public void DestroyDevice()
+    {
+        Destroy(deviceObject);
     }
 }
