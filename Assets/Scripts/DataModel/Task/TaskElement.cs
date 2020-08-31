@@ -31,6 +31,12 @@ namespace DataModel
                 case RotateTaskData r:
                     IsDone = r.IsDone(GetRotationProperty().Rotation);
                     break;
+                case PutInBoxTaskData p:
+                    IsDone = p.IsDone(GetPositionProperty().Position);
+                    break;
+                case OutOfBoxTaskData o:
+                    IsDone = o.IsDone(GetPositionProperty().Position);
+                    break;
                 default:
                     throw new TypeLoadException($"Тип {Task.GetType()} не может быть обработан!");
             }

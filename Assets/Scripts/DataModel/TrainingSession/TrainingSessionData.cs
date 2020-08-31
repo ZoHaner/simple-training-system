@@ -118,6 +118,20 @@ namespace DataModel
                         TaskElement taskElement = new TaskElement(subTask.Value, shiftTaskData);
                         taskData.TaskElements.Add(taskElement);
                     }
+                    else if(subTask.Key is PutInBoxTask)
+                    {
+                        PutInBoxTask putInBoxTask = (PutInBoxTask)subTask.Key;
+                        PutInBoxTaskData putInBoxTaskData = new PutInBoxTaskData(putInBoxTask);
+                        TaskElement taskElement = new TaskElement(subTask.Value, putInBoxTaskData);
+                        taskData.TaskElements.Add(taskElement);
+                    }
+                    else if (subTask.Key is OutOfBoxTask)
+                    {
+                        OutOfBoxTask outOfBoxTask = (OutOfBoxTask)subTask.Key;
+                        OutOfBoxTaskData outOfBoxTaskData = new OutOfBoxTaskData(outOfBoxTask);
+                        TaskElement taskElement = new TaskElement(subTask.Value, outOfBoxTaskData);
+                        taskData.TaskElements.Add(taskElement);
+                    }
                 }
 
                 tasks[i] = taskData;

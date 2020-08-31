@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Components
 {
+    /// <summary>
+    /// Задача для смещения объекта вдоль одной оси
+    /// </summary>
     [RequireComponent(typeof(MoveableElement))]
     public class ShiftTask : Task
     {
