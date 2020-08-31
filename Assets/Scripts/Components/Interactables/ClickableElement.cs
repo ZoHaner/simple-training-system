@@ -3,32 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickableElement : InteractableElement
+namespace Components
 {
-    [SerializeField] private ButtonState initialState;
-
-    private DeviceController deviceController;
-    
-    private void Awake()
+    public class ClickableElement : InteractableElement
     {
-        var controller = FindObjectOfType<DeviceController>();
-        if (controller != null)
+        [SerializeField] private ButtonState initialState;
+
+        private DeviceController deviceController;
+
+        private void Awake()
         {
-            deviceController = controller;
+            var controller = FindObjectOfType<DeviceController>();
+            if (controller != null)
+            {
+                deviceController = controller;
+            }
+            else
+            {
+                Debug.LogError("RotatableElement : DeviceController не найден");
+            }
+
+            // Начальные установки анимации
+            var animator = GetComponent<Animator>();
+            if(animator != null)
+            {
+                animator.SetInteger("state", (int)initialState);
+            }
         }
-        else
+
+        public ButtonState GetButtonState()
         {
-            Debug.LogError($"RotatableElement : DeviceController не найден");
+            return initialState;
         }
-    }
 
-    public ButtonState GetButtonState()
-    {
-        return initialState;
-    }
-
-    private void OnMouseUp()
-    {
-        deviceController.OnClick(gameObject.name);
+        private void OnMouseUp()
+        {
+            deviceController.OnClick(gameObject.name);
+        }
     }
 }

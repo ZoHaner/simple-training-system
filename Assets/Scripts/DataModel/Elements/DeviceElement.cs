@@ -32,5 +32,17 @@ namespace DataModel
                 }
             }
         }
+
+        public void Click()
+        {
+            foreach (var prop in Properties)
+            {
+                if (prop is ButtonProperty)
+                {
+                    ButtonProperty buttonProperty = (ButtonProperty)prop;
+                    buttonProperty.Switch();
+                }
+            }
+        }
     }
 }

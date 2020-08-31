@@ -158,7 +158,12 @@ namespace DataModel
 
         public void Click(string deviceName)
         {
-            throw new System.NotImplementedException();
+            DeviceElement deviceElement;
+            if (deviceElements.TryGetValue(deviceName, out deviceElement))
+            {
+                deviceElement.Click();
+                OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
+            }
         }
 
 
@@ -168,9 +173,9 @@ namespace DataModel
             if (deviceElements.TryGetValue(deviceName, out deviceElement))
             {
                 deviceElement.Drag(deltaPos);
+                OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
             }
 
-            OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
         }
         #endregion
     }

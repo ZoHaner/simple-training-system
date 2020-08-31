@@ -38,6 +38,7 @@ public class DeviceController : MonoBehaviour
             switch (prop)
             {
                 case ButtonProperty bp:
+                    view.SetAnimationState(sceneElements[elementName], "state", (int)bp.ButtonState);
                     break;
                 case PositionProperty pp:
                     view.SetPosition(sceneElements[elementName], pp.Position);

@@ -18,12 +18,12 @@ public class DeviceView : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(rotation);
     }
 
-    public void SetAnimationState(GameObject gameObject, int paramId, bool paramValue)
+    public void SetAnimationState(GameObject gameObject, string param, int paramValue)
     {
         var animator = gameObject.GetComponent<Animator>();
         if (animator != null)
         {
-            animator.SetBool(paramId, paramValue);
+            animator.SetInteger(param, paramValue);
         }
     }
 }
