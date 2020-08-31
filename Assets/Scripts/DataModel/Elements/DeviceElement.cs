@@ -15,5 +15,22 @@ namespace DataModel
         {
             Properties.Add(property);
         }
+
+        public void Drag(Vector3 deltaPos)
+        {
+            foreach (var prop in Properties)
+            {
+                if(prop is PositionProperty)
+                {
+                    PositionProperty positionProperty = (PositionProperty)prop;
+                    positionProperty.Move(deltaPos);
+                }
+                if(prop is RotationProperty)
+                {
+                    RotationProperty rotationProperty = (RotationProperty)prop;
+                    rotationProperty.Rotate(deltaPos);
+                }
+            }
+        }
     }
 }

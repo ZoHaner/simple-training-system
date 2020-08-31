@@ -11,14 +11,14 @@ public class DeviceCreator : MonoBehaviour
 {
     [SerializeField] private GameObject[] devicePrefabs;
     
-    private SessionController sessionController;
+    private DeviceController deviceController;
 
     private void Start()
     {
-        SessionController controller = FindObjectOfType<SessionController>();
+        DeviceController controller = FindObjectOfType<DeviceController>();
         if(controller != null)
         {
-            sessionController = controller;
+            deviceController = controller;
         }
         else
         {
@@ -32,7 +32,7 @@ public class DeviceCreator : MonoBehaviour
         {
             GameObject device = Instantiate(devicePrefabs[index]);
             InteractableElement[] deviceElements = device.GetComponentsInChildren<InteractableElement>();
-            sessionController.LoadNewDevice(deviceElements);
+            deviceController.LoadNewDevice(deviceElements);
         }
         else
         {

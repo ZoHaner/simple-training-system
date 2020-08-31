@@ -44,9 +44,10 @@ namespace DataModel
             maxZ = maxValues.z;
         }
 
-        public void SetRotation(Vector3 newRot)
+        public void Rotate(Vector3 deltaRot)
         {
             Vector3 curRot = Rotation;
+            Vector3 newRot = curRot + deltaRot;
 
             if (!lockX)
             {

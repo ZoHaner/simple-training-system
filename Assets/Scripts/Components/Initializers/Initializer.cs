@@ -7,12 +7,12 @@ public class Initializer : MonoBehaviour
 {
     [Header("Controllers")]
     [SerializeField] private DeviceController deviceController;
-    [SerializeField] private SessionController sessionController;
+    //[SerializeField] private SessionController sessionController;
 
     private void Start()
     {
         TrainingSessionData session = new TrainingSessionData();
         deviceController.SetModel(session);
-        sessionController.SetModel(session);
+        //sessionController.SetModel(session);
     }
 }

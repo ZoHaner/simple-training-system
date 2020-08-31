@@ -10,16 +10,17 @@ namespace DataModel
     /// <summary>
     /// Класс хранит информацию о тренировочной сессии
     /// </summary>
-    public class TrainingSessionData : ISessionCallbacks, ISessionOperations, IDeviceOperations
+    public class TrainingSessionData : ISessionCallbacks, IDeviceOperations
     {
-        public event ElementsParamsChanged OnElementsParamsChanged;
+        public event ElementParamsChanged OnElementsParamsChanged;
         public event TrainingFinished OnTrainingFinished;
         public event TrainingErrorAction OnTrainingErrorAction;
 
         private int currentTaskIndex;
         private Task[] tasks;
         private Dictionary<string, DeviceElement> deviceElements = new Dictionary<string, DeviceElement>();
-        
+
+        private Vector2 lastMousePosition;
         private float startTime;
         private int errorsCount;
 
@@ -132,17 +133,29 @@ namespace DataModel
         #endregion
 
         #region Device Operations
-        public void Drag(string deviceName, Vector2 mouseDelta)
+        public void Drag(string deviceName, Vector2 mousePosition)
         {
-            throw new System.NotImplementedException();
-        }
+            if (lastMousePosition == Vector2.negativeInfinity) return;
 
-        public void Click(string deviceName)
-        {
-            throw new System.NotImplementedException();
+            DeviceElement deviceElement;
+            if (deviceElements.TryGetValue(deviceName, out deviceElement))
+            {
+                deviceElement.Drag(ActionConvertor.ConvertToDeltaPosition(mousePosition - lastMousePosition));
+            }
+
+            OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
+
+            lastMousePosition = mousePosition;
         }
 
         public void EndDrag(string deviceName, Vector2 mousePosition)
+        {
+            lastMousePosition = Vector2.negativeInfinity;
+
+            // + Проверки
+        }
+
+        public void Click(string deviceName)
         {
             throw new System.NotImplementedException();
         }

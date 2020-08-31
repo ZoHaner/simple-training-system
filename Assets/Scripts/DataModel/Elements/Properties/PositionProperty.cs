@@ -44,9 +44,10 @@ namespace DataModel
             maxZ = maxValues.z;
         }
 
-        public void SetPosition(Vector3 newPos)
+        public void Move(Vector3 deltaPos)
         {
             Vector3 curPos = Position;
+            Vector3 newPos = curPos + deltaPos;
 
             if (!lockX)
             {
