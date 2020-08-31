@@ -9,8 +9,7 @@ public class ClickableElement : InteractableElement
 
     private DeviceController deviceController;
     
-
-    private void Start()
+    private void Awake()
     {
         var controller = FindObjectOfType<DeviceController>();
         if (controller != null)
