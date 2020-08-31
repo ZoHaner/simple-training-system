@@ -30,6 +30,7 @@ namespace DataModel
 
         public PositionProperty(MoveableElement moveableElement)
         {
+            Position = moveableElement.GetStartPosition();
             var locks = moveableElement.GetLocks();
             this.lockX = locks[0];
             this.lockY = locks[1];

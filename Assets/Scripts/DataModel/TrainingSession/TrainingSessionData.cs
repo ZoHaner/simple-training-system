@@ -132,25 +132,26 @@ namespace DataModel
         }
         #endregion
 
+
         #region Device Operations
         public void Drag(string deviceName, Vector2 mousePosition)
         {
-            if (lastMousePosition == Vector2.negativeInfinity) return;
-
-            DeviceElement deviceElement;
-            if (deviceElements.TryGetValue(deviceName, out deviceElement))
+            if (lastMousePosition != Vector2.zero)
             {
-                deviceElement.Drag(ActionConvertor.ConvertToDeltaPosition(mousePosition - lastMousePosition));
+                DragElement(deviceName, mousePosition - lastMousePosition);
             }
-
-            OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
 
             lastMousePosition = mousePosition;
         }
 
         public void EndDrag(string deviceName, Vector2 mousePosition)
         {
-            lastMousePosition = Vector2.negativeInfinity;
+            if (lastMousePosition != Vector2.zero)
+            {
+                DragElement(deviceName, mousePosition - lastMousePosition);
+            }
+
+            lastMousePosition = Vector2.zero;
 
             // + Проверки
         }
@@ -158,6 +159,18 @@ namespace DataModel
         public void Click(string deviceName)
         {
             throw new System.NotImplementedException();
+        }
+
+
+        private void DragElement(string deviceName, Vector2 deltaPos)
+        {
+            DeviceElement deviceElement;
+            if (deviceElements.TryGetValue(deviceName, out deviceElement))
+            {
+                deviceElement.Drag(deltaPos);
+            }
+
+            OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
         }
         #endregion
     }

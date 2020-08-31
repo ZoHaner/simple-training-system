@@ -30,6 +30,7 @@ namespace DataModel
 
         public RotationProperty(RotatableElement rotatableElement)
         {
+            Rotation = rotatableElement.GetStartRotation();
             var locks = rotatableElement.GetLocks();
             this.lockX = locks[0];
             this.lockY = locks[1];

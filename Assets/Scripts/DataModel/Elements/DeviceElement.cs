@@ -23,12 +23,12 @@ namespace DataModel
                 if(prop is PositionProperty)
                 {
                     PositionProperty positionProperty = (PositionProperty)prop;
-                    positionProperty.Move(deltaPos);
+                    positionProperty.Move(ActionConvertor.ConvertToDeltaPosition(deltaPos));
                 }
                 if(prop is RotationProperty)
                 {
                     RotationProperty rotationProperty = (RotationProperty)prop;
-                    rotationProperty.Rotate(deltaPos);
+                    rotationProperty.Rotate(ActionConvertor.ConvertToDeltaRotation(deltaPos));
                 }
             }
         }

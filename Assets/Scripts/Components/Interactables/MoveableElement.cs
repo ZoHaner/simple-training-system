@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveableElement : InteractableElement
 {
     private DeviceController deviceController;
+    private Vector3 startPosition;
 
     [SerializeField] private bool lockX;
     [SerializeField] private bool lockY;
@@ -13,7 +14,7 @@ public class MoveableElement : InteractableElement
     [SerializeField] private float minY, maxY;
     [SerializeField] private float minZ, maxZ;
 
-    private void Start()
+    private void Awake()
     {
         var controller = FindObjectOfType<DeviceController>();
         if (controller != null)
@@ -24,7 +25,14 @@ public class MoveableElement : InteractableElement
         {
             Debug.LogError($"MoveableElement : DeviceController не найден");
         }
+
+        startPosition = transform.position;
     } 
+
+    public Vector3 GetStartPosition()
+    {
+        return startPosition;
+    }
 
     public bool[] GetLocks()
     {

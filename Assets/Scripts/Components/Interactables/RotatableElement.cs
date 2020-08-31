@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotatableElement : InteractableElement
 {
     private DeviceController deviceController;
+    private Vector3 startRotation;
 
     [SerializeField] private bool lockX;
     [SerializeField] private bool lockY;
@@ -13,7 +14,7 @@ public class RotatableElement : InteractableElement
     [SerializeField] private float minY, maxY;
     [SerializeField] private float minZ, maxZ;
 
-    private void Start()
+    private void Awake()
     {
         var controller = FindObjectOfType<DeviceController>();
         if (controller != null)
@@ -24,6 +25,13 @@ public class RotatableElement : InteractableElement
         {
             Debug.LogError($"RotatableElement : DeviceController не найден");
         }
+
+        startRotation = transform.eulerAngles;
+    }
+
+    public Vector3 GetStartRotation()
+    {
+        return startRotation;
     }
 
     public bool[] GetLocks()
