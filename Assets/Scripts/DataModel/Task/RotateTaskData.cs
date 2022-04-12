@@ -1,9 +1,10 @@
-﻿using Components;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Components.Tasks;
+using DataModel.Task.Operations;
+using DataModel.Task.TargetStates;
 using UnityEngine;
 
-namespace DataModel
+namespace DataModel.Task
 {
     public class RotateTaskData : TaskData
     {

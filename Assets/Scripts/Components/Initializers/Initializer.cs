@@ -1,18 +1,20 @@
-﻿using DataModel;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Controllers;
+using DataModel.TrainingSession;
 using UnityEngine;
 
-public class Initializer : MonoBehaviour
+namespace Components.Initializers
 {
-    [Header("Controllers")]
-    [SerializeField] private DeviceController deviceController;
-    [SerializeField] private SessionController sessionController;
-
-    private void Start()
+    public class Initializer : MonoBehaviour
     {
-        TrainingSessionData session = new TrainingSessionData();
-        deviceController.SetModel(session);
-        sessionController.SetModel(session);
+        [Header("Controllers")]
+        [SerializeField] private DeviceController deviceController;
+        [SerializeField] private SessionController sessionController;
+
+        private void Start()
+        {
+            TrainingSessionData session = new TrainingSessionData();
+            deviceController.SetModel(session);
+            sessionController.SetModel(session);
+        }
     }
 }

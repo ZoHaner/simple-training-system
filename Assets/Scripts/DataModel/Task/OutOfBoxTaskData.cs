@@ -1,9 +1,9 @@
-﻿using Components;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Components.Tasks;
+using DataModel.Task.TargetStates;
 using UnityEngine;
 
-namespace DataModel
+namespace DataModel.Task
 {
     /// <summary>
     /// Task data about moving an object outside the area

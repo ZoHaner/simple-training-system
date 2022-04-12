@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using Components.Tasks;
+using DataModel.Task.Operations;
+using DataModel.Task.TargetStates;
 using UnityEngine;
-using Components;
-using System;
 
-namespace DataModel
+namespace DataModel.Task
 {
     public class ShiftTaskData : TaskData
     {

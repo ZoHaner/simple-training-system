@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-namespace DataModel
+namespace DataModel.Task.Operations
 {
     public class IsBigger<T> : IOperation<T> where T : IComparable<T>
     {

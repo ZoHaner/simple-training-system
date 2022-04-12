@@ -1,61 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Controllers;
 using UnityEngine;
 
-public class RotatableElement : InteractableElement
+namespace Components.Interactables
 {
-    private DeviceController deviceController;
-    private Vector3 startRotation;
-
-    [SerializeField] private bool lockX;
-    [SerializeField] private bool lockY;
-    [SerializeField] private bool lockZ;
-    [SerializeField] private float minX, maxX;
-    [SerializeField] private float minY, maxY;
-    [SerializeField] private float minZ, maxZ;
-
-    private void Awake()
+    public class RotatableElement : InteractableElement
     {
-        var controller = FindObjectOfType<DeviceController>();
-        if (controller != null)
+        private DeviceController deviceController;
+        private Vector3 startRotation;
+
+        [SerializeField] private bool lockX;
+        [SerializeField] private bool lockY;
+        [SerializeField] private bool lockZ;
+        [SerializeField] private float minX, maxX;
+        [SerializeField] private float minY, maxY;
+        [SerializeField] private float minZ, maxZ;
+
+        private void Awake()
         {
-            deviceController = controller;
+            var controller = FindObjectOfType<DeviceController>();
+            if (controller != null)
+            {
+                deviceController = controller;
+            }
+            else
+            {
+                Debug.LogError($"RotatableElement : DeviceController wasn't found");
+            }
+
+            startRotation = transform.eulerAngles;
         }
-        else
+
+        public Vector3 GetStartRotation()
         {
-            Debug.LogError($"RotatableElement : DeviceController wasn't found");
+            return startRotation;
         }
 
-        startRotation = transform.eulerAngles;
-    }
+        public bool[] GetLocks()
+        {
+            return new bool[3] { lockX, lockY, lockZ };
+        }
 
-    public Vector3 GetStartRotation()
-    {
-        return startRotation;
-    }
+        public Vector3 GetMinValues()
+        {
+            return new Vector3(minX, minY, minZ);
+        }
 
-    public bool[] GetLocks()
-    {
-        return new bool[3] { lockX, lockY, lockZ };
-    }
+        public Vector3 GetMaxValues()
+        {
+            return new Vector3(maxX, maxY, maxZ);
+        }
 
-    public Vector3 GetMinValues()
-    {
-        return new Vector3(minX, minY, minZ);
-    }
+        private void OnMouseDrag()
+        {
+            deviceController.OnDrag(gameObject.name);
+        }
 
-    public Vector3 GetMaxValues()
-    {
-        return new Vector3(maxX, maxY, maxZ);
-    }
-
-    private void OnMouseDrag()
-    {
-        deviceController.OnDrag(gameObject.name);
-    }
-
-    private void OnMouseUp()
-    {
-        deviceController.OnEndDrag(gameObject.name);
+        private void OnMouseUp()
+        {
+            deviceController.OnEndDrag(gameObject.name);
+        }
     }
 }

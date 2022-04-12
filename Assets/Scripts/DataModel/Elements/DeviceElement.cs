@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DataModel.Elements.Properties;
+using DataModel.TrainingSession.Helpers;
 using UnityEngine;
 
-namespace DataModel
+namespace DataModel.Elements
 {
     /// <summary>
     /// Base class for all device parts

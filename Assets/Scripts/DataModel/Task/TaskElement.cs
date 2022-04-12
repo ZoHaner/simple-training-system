@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using DataModel.Elements;
+using DataModel.Elements.Properties;
+using DataModel.Task.TargetStates;
 
-namespace DataModel
+namespace DataModel.Task
 {
     public class TaskElement
     {

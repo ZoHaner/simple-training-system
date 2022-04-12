@@ -1,9 +1,9 @@
-﻿using Components;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Components.Tasks;
+using DataModel.Elements.Properties;
+using DataModel.Task.TargetStates;
 
-namespace DataModel
+namespace DataModel.Task
 {
     public class ClickTaskData : TaskData
     {

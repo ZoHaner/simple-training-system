@@ -1,47 +1,49 @@
-﻿using Components;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using Components.Interactables;
+using Controllers;
 using UnityEngine;
 
-/// <summary>
-/// Creates device object from prefab
-/// </summary>
-public class DeviceCreator : MonoBehaviour
+namespace Components.Creators
 {
-    [SerializeField] private GameObject[] devicePrefabs;
-    private GameObject deviceObject;
-    private DeviceController deviceController;
-
-    private void Start()
+    /// <summary>
+    /// Creates device object from prefab
+    /// </summary>
+    public class DeviceCreator : MonoBehaviour
     {
-        DeviceController controller = FindObjectOfType<DeviceController>();
-        if(controller != null)
-        {
-            deviceController = controller;
-        }
-        else
-        {
-            throw new NullReferenceException("DeviceCreator : SessionController wasn't found!");
-        }
-    }
+        [SerializeField] private GameObject[] devicePrefabs;
+        private GameObject deviceObject;
+        private DeviceController deviceController;
 
-    public void Create(int index)
-    {
-        if(index <= devicePrefabs.Length - 1)
+        private void Start()
         {
-            deviceObject = Instantiate(devicePrefabs[index]);
-            InteractableElement[] deviceElements = deviceObject.GetComponentsInChildren<InteractableElement>();
-            deviceController.LoadNewDevice(deviceElements);
+            DeviceController controller = FindObjectOfType<DeviceController>();
+            if(controller != null)
+            {
+                deviceController = controller;
+            }
+            else
+            {
+                throw new NullReferenceException("DeviceCreator : SessionController wasn't found!");
+            }
         }
-        else
-        {
-            throw new IndexOutOfRangeException($"DeviceCreator : Prefab with index '{index}' doesn't exist!");
-        }
-    }
 
-    public void DestroyDevice()
-    {
-        Destroy(deviceObject);
+        public void Create(int index)
+        {
+            if(index <= devicePrefabs.Length - 1)
+            {
+                deviceObject = Instantiate(devicePrefabs[index]);
+                InteractableElement[] deviceElements = deviceObject.GetComponentsInChildren<InteractableElement>();
+                deviceController.LoadNewDevice(deviceElements);
+            }
+            else
+            {
+                throw new IndexOutOfRangeException($"DeviceCreator : Prefab with index '{index}' doesn't exist!");
+            }
+        }
+
+        public void DestroyDevice()
+        {
+            Destroy(deviceObject);
+        }
     }
 }

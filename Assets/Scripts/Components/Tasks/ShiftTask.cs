@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Components.Interactables;
+using DataModel.Task;
 using UnityEngine;
 
-namespace Components
+namespace Components.Tasks
 {
     /// <summary>
     /// Task for shifting an object along one axis
@@ -20,9 +20,9 @@ namespace Components
         public float TargetValue { get { return targetValue; } }
     }
 
-}
-public enum Operator
-{
-    LessThan,
-    MoreThan
+    public enum Operator
+    {
+        LessThan,
+        MoreThan
+    }
 }

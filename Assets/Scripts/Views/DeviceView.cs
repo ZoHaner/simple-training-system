@@ -1,29 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
-/// <summary>
-/// View for device interaction
-/// </summary>
-public class DeviceView : MonoBehaviour
+namespace Views
 {
-    public void SetPosition(GameObject gameObject, Vector3 position)
+    /// <summary>
+    /// View for device interaction
+    /// </summary>
+    public class DeviceView : MonoBehaviour
     {
-        gameObject.transform.position = position;
-    }
-
-    public void SetRotation(GameObject gameObject, Vector3 rotation)
-    {
-        gameObject.transform.rotation = Quaternion.Euler(rotation);
-    }
-
-    public void SetAnimationState(GameObject gameObject, string param, int paramValue)
-    {
-        var animator = gameObject.GetComponent<Animator>();
-        if (animator != null)
+        public void SetPosition(GameObject gameObject, Vector3 position)
         {
-            animator.SetInteger(param, paramValue);
+            gameObject.transform.position = position;
+        }
+
+        public void SetRotation(GameObject gameObject, Vector3 rotation)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(rotation);
+        }
+
+        public void SetAnimationState(GameObject gameObject, string param, int paramValue)
+        {
+            var animator = gameObject.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetInteger(param, paramValue);
+            }
         }
     }
 }

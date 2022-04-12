@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IProperty
+﻿namespace DataModel.Elements.Properties
 {
+    public interface IProperty
+    {
+    }
 }

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Components.Interactables;
+using DataModel.Task;
 using UnityEngine;
 
-namespace Components
+namespace Components.Tasks
 {
     [RequireComponent(typeof(RotatableElement))]
     public class RotateTask : Task

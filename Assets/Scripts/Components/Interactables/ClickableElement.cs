@@ -1,9 +1,8 @@
-﻿using DataModel;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Controllers;
+using DataModel.Elements.Properties;
 using UnityEngine;
 
-namespace Components
+namespace Components.Interactables
 {
     public class ClickableElement : InteractableElement
     {

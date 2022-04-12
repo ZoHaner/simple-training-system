@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-namespace DataModel
+namespace DataModel.Task
 {
     /// <summary>
     /// A script unit that describes an element, its target state, and execution order

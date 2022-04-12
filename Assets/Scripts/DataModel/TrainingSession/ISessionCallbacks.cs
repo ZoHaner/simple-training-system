@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace DataModel
+﻿namespace DataModel.TrainingSession
 {
     public delegate void TrainingCompleted(float time, int errors);
     public delegate void TaskError();

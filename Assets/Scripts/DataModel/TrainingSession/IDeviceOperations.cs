@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Components.Interactables;
+using DataModel.Elements;
 using UnityEngine;
 
-namespace DataModel
+namespace DataModel.TrainingSession
 {
     public delegate void ElementParamsChanged(KeyValuePair<string, DeviceElement> element);
 

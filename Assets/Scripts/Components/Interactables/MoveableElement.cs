@@ -1,61 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Controllers;
 using UnityEngine;
 
-public class MoveableElement : InteractableElement
+namespace Components.Interactables
 {
-    private DeviceController deviceController;
-    private Vector3 startPosition;
-
-    [SerializeField] private bool lockX;
-    [SerializeField] private bool lockY;
-    [SerializeField] private bool lockZ;
-    [SerializeField] private float minX, maxX;
-    [SerializeField] private float minY, maxY;
-    [SerializeField] private float minZ, maxZ;
-
-    private void Awake()
+    public class MoveableElement : InteractableElement
     {
-        var controller = FindObjectOfType<DeviceController>();
-        if (controller != null)
+        private DeviceController deviceController;
+        private Vector3 startPosition;
+
+        [SerializeField] private bool lockX;
+        [SerializeField] private bool lockY;
+        [SerializeField] private bool lockZ;
+        [SerializeField] private float minX, maxX;
+        [SerializeField] private float minY, maxY;
+        [SerializeField] private float minZ, maxZ;
+
+        private void Awake()
         {
-            deviceController = controller;
-        }
-        else
+            var controller = FindObjectOfType<DeviceController>();
+            if (controller != null)
+            {
+                deviceController = controller;
+            }
+            else
+            {
+                Debug.LogError($"MoveableElement : DeviceController wasn't found");
+            }
+
+            startPosition = transform.position;
+        } 
+
+        public Vector3 GetStartPosition()
         {
-            Debug.LogError($"MoveableElement : DeviceController wasn't found");
+            return startPosition;
         }
 
-        startPosition = transform.position;
-    } 
+        public bool[] GetLocks()
+        {
+            return new bool[3] { lockX, lockY, lockZ };
+        }
 
-    public Vector3 GetStartPosition()
-    {
-        return startPosition;
-    }
+        public Vector3 GetMinValues()
+        {
+            return new Vector3(minX, minY, minZ);
+        }
 
-    public bool[] GetLocks()
-    {
-        return new bool[3] { lockX, lockY, lockZ };
-    }
+        public Vector3 GetMaxValues()
+        {
+            return new Vector3(maxX, maxY, maxZ);
+        }
 
-    public Vector3 GetMinValues()
-    {
-        return new Vector3(minX, minY, minZ);
-    }
+        private void OnMouseDrag()
+        {
+            deviceController.OnDrag(gameObject.name);
+        }
 
-    public Vector3 GetMaxValues()
-    {
-        return new Vector3(maxX, maxY, maxZ);
-    }
-
-    private void OnMouseDrag()
-    {
-        deviceController.OnDrag(gameObject.name);
-    }
-
-    private void OnMouseUp()
-    {
-        deviceController.OnEndDrag(gameObject.name);
+        private void OnMouseUp()
+        {
+            deviceController.OnEndDrag(gameObject.name);
+        }
     }
 }

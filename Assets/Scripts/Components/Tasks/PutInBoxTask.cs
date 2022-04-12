@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Components.Interactables;
 using UnityEngine;
 
-namespace Components
+namespace Components.Tasks
 {
     /// <summary>
     /// Task to put an object in area

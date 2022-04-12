@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using DataModel.Elements;
 
-namespace DataModel
+namespace DataModel.TrainingSession.Helpers
 {
     public class TaskChecker
     {
@@ -11,7 +9,7 @@ namespace DataModel
         /// </summary>
         /// <param name="deviceElement">Selected element</param>
         /// <param name="task">Current task</param>
-        public static bool CheckIfElementInTask(DeviceElement deviceElement, Task task)
+        public static bool CheckIfElementInTask(DeviceElement deviceElement, Task.Task task)
         {
             foreach (var taskElement in task.TaskElements)
             {
@@ -30,7 +28,7 @@ namespace DataModel
         /// Checking the completion of a Task
         /// </summary>
         /// <param name="task">Task from task array</param>
-        public static bool CheckIfTaskIsDone(Task task)
+        public static bool CheckIfTaskIsDone(Task.Task task)
         {
             int isDoneCount = 0;
             foreach (var taskElement in task.TaskElements)

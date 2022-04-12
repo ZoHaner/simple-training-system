@@ -1,11 +1,14 @@
-﻿using Components;
-using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Components.Interactables;
+using Components.Tasks;
+using DataModel.Elements;
+using DataModel.Elements.Properties;
+using DataModel.Task;
+using DataModel.TrainingSession.Helpers;
 using UnityEngine;
 
-namespace DataModel
+namespace DataModel.TrainingSession
 {
     /// <summary>
     /// The class stores information about the training session
@@ -20,7 +23,7 @@ namespace DataModel
 
         private ModelState modelState = ModelState.NotInitialized;
         private int currentTaskIndex;
-        private Task[] tasks;
+        private Task.Task[] tasks;
         private Dictionary<string, DeviceElement> deviceElements = new Dictionary<string, DeviceElement>();
 
         private Vector2 lastMousePosition;
@@ -43,7 +46,7 @@ namespace DataModel
             this.startTime = startTime;
 
             // Create a temporary dictionary for found tasks
-            Dictionary<Components.Task, DeviceElement> tempTasks = new Dictionary<Components.Task, DeviceElement>();
+            Dictionary<Components.Tasks.Task, DeviceElement> tempTasks = new Dictionary<Components.Tasks.Task, DeviceElement>();
 
             foreach (var sceneElement in interactableElements)
             {
@@ -77,7 +80,7 @@ namespace DataModel
                 }
 
                 // Looking for tasks in the selected element
-                Components.Task[] tasks = sceneElement.gameObject.GetComponents<Components.Task>();
+                Components.Tasks.Task[] tasks = sceneElement.gameObject.GetComponents<Components.Tasks.Task>();
 
                 // And add to the dictionary
                 foreach(var taskComponent in tasks)
@@ -92,12 +95,12 @@ namespace DataModel
                                 orderby g.Key
                                 select g;
 
-            tasks = new Task[groupedTasks.Count()];
+            tasks = new Task.Task[groupedTasks.Count()];
 
             int i = 0;
             foreach (var task in groupedTasks)
             {
-                Task taskData = new Task();
+                Task.Task taskData = new Task.Task();
 
                 foreach (var subTask in task)
                 {

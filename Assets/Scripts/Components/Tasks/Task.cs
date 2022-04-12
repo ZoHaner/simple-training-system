@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Components
+namespace Components.Tasks
 {
     public abstract class Task : MonoBehaviour
     {

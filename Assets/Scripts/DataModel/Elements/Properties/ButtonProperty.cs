@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Components;
+﻿using Components.Interactables;
 
-namespace DataModel
+namespace DataModel.Elements.Properties
 {
     public class ButtonProperty : IProperty
     {

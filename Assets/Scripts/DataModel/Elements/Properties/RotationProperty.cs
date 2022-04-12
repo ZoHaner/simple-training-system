@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Components.Interactables;
 using UnityEngine;
 
-namespace DataModel
+namespace DataModel.Elements.Properties
 {
     public class RotationProperty : IProperty
     {

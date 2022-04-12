@@ -1,56 +1,58 @@
-﻿using DataModel;
-using System.Collections;
-using System.Collections.Generic;
+﻿using DataModel.TrainingSession;
 using UnityEngine;
+using Views;
 
-public class SessionController : MonoBehaviour
+namespace Controllers
 {
-    private ISessionCallbacks model;
-    [SerializeField] private SessionView sessionView;
-
-    public void SetModel(ISessionCallbacks model)
+    public class SessionController : MonoBehaviour
     {
-        this.model = model;
+        private ISessionCallbacks model;
+        [SerializeField] private SessionView sessionView;
 
-        model.OnTaskError += OnTrainingErrorAction;
-        model.OnMoveToNextTask += OnMoveToNextTask;
-        model.OnTrainingCompleted += OnTrainingFinished;
-    }
+        public void SetModel(ISessionCallbacks model)
+        {
+            this.model = model;
 
-    private void OnMoveToNextTask(int order, string description)
-    {
-        sessionView.SetDescription(order + ". " + description);
-        Debug.Log($"Model_OnMoveToNextTask : Next #{order}. Task - {description}");
-    }
+            model.OnTaskError += OnTrainingErrorAction;
+            model.OnMoveToNextTask += OnMoveToNextTask;
+            model.OnTrainingCompleted += OnTrainingFinished;
+        }
 
-    private void OnTrainingFinished(float startTime, int errors)
-    {
-        sessionView.SetActiveSessionEndScreen(true);
-        sessionView.SetFullTime(((int)(Time.time - startTime)).ToString());
-        sessionView.SetErrorsCount(errors.ToString());
-        sessionView.SetActiveSessionScreen(false);
-        Debug.Log($"Model_OnTrainingFinished : Time - {Time.time - startTime}. Errors - {errors}");
-    }
+        private void OnMoveToNextTask(int order, string description)
+        {
+            sessionView.SetDescription(order + ". " + description);
+            Debug.Log($"Model_OnMoveToNextTask : Next #{order}. Task - {description}");
+        }
 
-    private void OnTrainingErrorAction()
-    {
-        sessionView.SetActiveErrorScreen(true);
-        sessionView.SetActiveSessionScreen(false);
-        Debug.Log($"Model_OnTrainingErrorAction");
-    }
+        private void OnTrainingFinished(float startTime, int errors)
+        {
+            sessionView.SetActiveSessionEndScreen(true);
+            sessionView.SetFullTime(((int)(Time.time - startTime)).ToString());
+            sessionView.SetErrorsCount(errors.ToString());
+            sessionView.SetActiveSessionScreen(false);
+            Debug.Log($"Model_OnTrainingFinished : Time - {Time.time - startTime}. Errors - {errors}");
+        }
 
-    public void ContinueSession()
-    {
-        model.ContinueSession();
-    }
+        private void OnTrainingErrorAction()
+        {
+            sessionView.SetActiveErrorScreen(true);
+            sessionView.SetActiveSessionScreen(false);
+            Debug.Log($"Model_OnTrainingErrorAction");
+        }
 
-    public void RestartSession()
-    {
-        model.RestartSession(Time.time);
-    }
+        public void ContinueSession()
+        {
+            model.ContinueSession();
+        }
 
-    public void CloseSession()
-    {
-        model.CloseSession();
+        public void RestartSession()
+        {
+            model.RestartSession(Time.time);
+        }
+
+        public void CloseSession()
+        {
+            model.CloseSession();
+        }
     }
 }
