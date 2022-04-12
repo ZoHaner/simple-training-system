@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Вид для работы с устройством
+/// View for device interaction
 /// </summary>
 public class DeviceView : MonoBehaviour
 {

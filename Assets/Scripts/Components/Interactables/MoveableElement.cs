@@ -23,7 +23,7 @@ public class MoveableElement : InteractableElement
         }
         else
         {
-            Debug.LogError($"MoveableElement : DeviceController не найден");
+            Debug.LogError($"MoveableElement : DeviceController wasn't found");
         }
 
         startPosition = transform.position;

@@ -34,7 +34,7 @@ namespace DataModel
                     return false;
                 }
             }
-            else throw new TypeLoadException($"Тип {value.GetType()} не может быть обработан!");
+            else throw new TypeLoadException($"Type {value.GetType()} cannot be processed!");
         }
     }
 }

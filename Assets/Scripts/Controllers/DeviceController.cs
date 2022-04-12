@@ -47,7 +47,7 @@ public class DeviceController : MonoBehaviour
                     view.SetRotation(sceneElements[elementName], rp.Rotation);
                     break;
                 default:
-                    throw new NotImplementedException($"DeviceController : Обработчика типа {prop.GetType()} не найдено!");
+                    throw new NotImplementedException($"DeviceController : Property {prop.GetType()} wasn't found!");
             }
         }
     }

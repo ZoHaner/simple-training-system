@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Components
 {
     /// <summary>
-    /// Задача для смещения объекта вдоль одной оси
+    /// Task for shifting an object along one axis
     /// </summary>
     [RequireComponent(typeof(MoveableElement))]
     public class ShiftTask : Task
     {
-        [Header("Задание:")]
+        [Header("Task:")]
         [SerializeField] private Axis shiftingAxis;
         [SerializeField] private Operator _operator;
         [SerializeField] private float targetValue;

@@ -58,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1097962894336587289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,8 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionOrder: 4
-  description: "\u0423\u0431\u0435\u0440\u0438\u0442\u0435 \u044D\u0442\u0443 \u0448\u0442\u0443\u043A\u0443
-    \u043F\u0440\u043E\u0447\u044C"
+  description: Pull out the old fuse
   minX: -0.85
   maxX: 0.85
   minY: 0
@@ -198,6 +199,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -222,6 +224,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &430357131103459362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionOrder: 2
-  description: "\u0421\u0434\u0432\u0438\u043D\u044C\u0442\u0435 \u0448\u0442\u0438\u0444\u0442\u044B"
+  description: Slide the pins
   shiftingAxis: 2
   _operator: 1
   targetValue: 2
@@ -285,7 +288,7 @@ GameObject:
   - component: {fileID: 2308469433794717775}
   - component: {fileID: 2308469433794717774}
   m_Layer: 0
-  m_Name: Device 1
+  m_Name: Device 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,6 +337,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -358,6 +362,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2853674903241307612
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +421,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -440,6 +446,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4366150854451590042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -466,8 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionOrder: 3
-  description: "\u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u043A\u0440\u044B\u0448\u043A\u0443
-    (\u0431\u043E\u043B\u0435\u0435 \u0447\u0435\u043C \u043D\u0430 60 \u0433\u0440\u0430\u0434\u0443\u0441\u043E\u0432)"
+  description: Open cover (more than 60 degrees)
   rotationAxis: 2
   _operator: 1
   targetValue: 60
@@ -550,6 +556,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -574,6 +581,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &1175002796595061887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -600,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionOrder: 2
-  description: "\u0421\u0434\u0432\u0438\u043D\u044C\u0442\u0435 \u0448\u0442\u0438\u0444\u0442\u044B"
+  description: Slide the pins
   shiftingAxis: 0
   _operator: 0
   targetValue: -2
@@ -683,6 +691,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -707,6 +716,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2559149851357779737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -754,8 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionOrder: 5
-  description: "\u0410 \u0432\u043E\u0442 \u044D\u0442\u0443 \u0448\u0442\u0443\u043A\u0443
-    \u043D\u0430 \u043C\u0435\u0441\u0442\u043E \u0441\u0442\u0430\u0440\u043E\u0439"
+  description: Insert new fuse
   minX: -0.1
   maxX: 0.1
   minY: 0.4
@@ -777,9 +786,9 @@ GameObject:
   - component: {fileID: 5552964387698450438}
   - component: {fileID: 8656668991225366508}
   - component: {fileID: 7908525247445568865}
-  - component: {fileID: 3412002974855138733}
-  - component: {fileID: 1447479879536498384}
   - component: {fileID: 2525886212135384405}
+  - component: {fileID: 1447479879536498384}
+  - component: {fileID: 3412002974855138733}
   - component: {fileID: 3593259997041766643}
   m_Layer: 0
   m_Name: Button
@@ -825,6 +834,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -849,6 +859,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &7908525247445568865
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -862,36 +873,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3412002974855138733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904190102814695773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df469d2730008ae41aac1c8ab0604696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executionOrder: 1
-  description: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u043A\u043D\u043E\u043F\u043A\u0443
-    \u0434\u043B\u044F \u043E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F
-    \u043F\u0438\u0442\u0430\u043D\u0438\u044F"
-  targetState: 0
---- !u!114 &1447479879536498384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904190102814695773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0480b50b43813934486ad32f1e4e66f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialState: 1
 --- !u!95 &2525886212135384405
 Animator:
   serializedVersion: 3
@@ -911,6 +892,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1447479879536498384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904190102814695773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0480b50b43813934486ad32f1e4e66f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialState: 1
+--- !u!114 &3412002974855138733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904190102814695773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df469d2730008ae41aac1c8ab0604696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executionOrder: 1
+  description: Press the power button to turn off
+  targetState: 0
 --- !u!114 &3593259997041766643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +933,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executionOrder: 6
-  description: "\u041D\u0443 \u0438 \u043D\u0430\u043F\u043E\u0441\u043B\u0435\u0434\u043E\u043A
-    \u0432\u043A\u043B\u044E\u0447\u0438 \u0435\u0451"
+  description: Press the power button to turn on
   targetState: 1

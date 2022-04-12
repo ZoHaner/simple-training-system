@@ -8,7 +8,7 @@ using UnityEngine;
 namespace DataModel
 {
     /// <summary>
-    /// Класс хранит информацию о тренировочной сессии
+    /// The class stores information about the training session
     /// </summary>
     public class TrainingSessionData : ISessionCallbacks, IDeviceOperations
     {
@@ -32,31 +32,31 @@ namespace DataModel
         #region Session Operations
 
         /// <summary>
-        /// Загружаем элементы нового устройства
+        /// Loading the elements of the new device
         /// </summary>
-        /// <param name="interactableElements">Объекты сцены с компонентом InteractableElement</param>
+        /// <param name="interactableElements">Scene objects with InteractableElement component</param>
         public void LoadNewDevice(InteractableElement[] interactableElements, float startTime)
         {
-            // Запоминаем для возможного перезапуска
+            // Remember for a possible restart
             initialStateDevice = interactableElements;
 
             this.startTime = startTime;
 
-            // Создаем временный словарь для найденных задач
+            // Create a temporary dictionary for found tasks
             Dictionary<Components.Task, DeviceElement> tempTasks = new Dictionary<Components.Task, DeviceElement>();
 
             foreach (var sceneElement in interactableElements)
             {
                 DeviceElement dataElement;
 
-                // Проверяем, наличие элемента в списке
+                // Checking if an element is in the list
                 if (!deviceElements.TryGetValue(sceneElement.name, out dataElement))
                 {
                     dataElement = new DeviceElement();
                     deviceElements.Add(sceneElement.name, dataElement);
                 }
 
-                // Преобразуем из компонентов сцены в хранимый формат данных
+                // Converting from scene components to a stored data format
                 if(sceneElement is ClickableElement) 
                 {
                     ClickableElement clickableElement = (ClickableElement)sceneElement;
@@ -76,17 +76,17 @@ namespace DataModel
                     dataElement.AddProperty(rp);
                 }
 
-                // Ищем задачи в выбранном элементе
+                // Looking for tasks in the selected element
                 Components.Task[] tasks = sceneElement.gameObject.GetComponents<Components.Task>();
 
-                // И добавляем в словарь
+                // And add to the dictionary
                 foreach(var taskComponent in tasks)
                 {
                     tempTasks.Add(taskComponent, dataElement);
                 }
             }
 
-            // Группируем задачи по порядку выполнения
+            // Grouping tasks in order of execution
             var groupedTasks = from tempTask in tempTasks
                                 group tempTask by tempTask.Key.ExecutionOrder into g
                                 orderby g.Key
@@ -148,7 +148,7 @@ namespace DataModel
         }
 
         /// <summary>
-        /// Продолжаем сессию
+        /// Continue session
         /// </summary>
         public void ContinueSession()
         {
@@ -156,7 +156,7 @@ namespace DataModel
         }
 
         /// <summary>
-        /// Обнуляем сессию
+        /// Close and reset the session
         /// </summary>
         public void CloseSession()
         {
@@ -169,7 +169,7 @@ namespace DataModel
         }
 
         /// <summary>
-        /// Перезагружаем сессию с начальными параметрами
+        /// Restart session with initial parameters
         /// </summary>
         public void RestartSession(float startTime)
         {
@@ -188,10 +188,10 @@ namespace DataModel
 
         #region Device Operations
         /// <summary>
-        /// Обработка изменения положения и вращения объекта
+        /// Handling object repositioning and rotation
         /// </summary>
-        /// <param name="deviceName">Имя объекта на сцене</param>
-        /// <param name="mousePosition">Текущая позиция мыши</param>
+        /// <param name="deviceName">Scene object name</param>
+        /// <param name="mousePosition">Current mouse position</param>
         public void Drag(string deviceName, Vector2 mousePosition)
         {
             if (modelState != ModelState.Run) return;
@@ -205,10 +205,10 @@ namespace DataModel
         }
 
         /// <summary>
-        /// Обработка окончания изменения положения и вращения объекта
+        /// Handling the end of changing the position and rotation of the object
         /// </summary>
-        /// <param name="deviceName">Имя объекта на сцене</param>
-        /// <param name="mousePosition">Текущая позиция мыши</param>
+        /// <param name="deviceName">Scene object name</param>
+        /// <param name="mousePosition">Current mouse position</param>
         public void EndDrag(string deviceName, Vector2 mousePosition)
         {
             if (modelState != ModelState.Run) return;
@@ -220,7 +220,7 @@ namespace DataModel
 
             lastMousePosition = Vector2.zero;
 
-            // Проверка на завершенность задачи и упражнения
+            // Checking for completeness of the task and exercise
             if(TaskChecker.CheckIfTaskIsDone(tasks[currentTaskIndex]))
             {
                 if(currentTaskIndex < tasks.Length - 1)
@@ -237,9 +237,8 @@ namespace DataModel
         }
 
         /// <summary>
-        /// Обработка нажатия на элемент
+        /// Handling clicking on an element
         /// </summary>
-        /// <param name="deviceName"></param>
         public void Click(string deviceName)
         {
             if (modelState != ModelState.Run) return;
@@ -259,7 +258,7 @@ namespace DataModel
                 deviceElement.Click();
                 OnElementsParamsChanged(new KeyValuePair<string, DeviceElement>(deviceName, deviceElements[deviceName]));
 
-                // Проверка на завершенность задачи и упражнения
+                // Checking for completeness of the task and exercise
                 if (TaskChecker.CheckIfTaskIsDone(tasks[currentTaskIndex]))
                 {
                     if (currentTaskIndex < tasks.Length - 1)
@@ -282,7 +281,7 @@ namespace DataModel
             DeviceElement deviceElement;
             if (deviceElements.TryGetValue(deviceName, out deviceElement))
             {
-                // Перед Drag проверяем, на этот ли элемент нужно воздействовать
+                // Before drag, we check if this element needs to be affected
                 bool elementInTask = TaskChecker.CheckIfElementInTask(deviceElement, tasks[currentTaskIndex]);
                 if(!elementInTask) 
                 {

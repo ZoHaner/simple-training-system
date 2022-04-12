@@ -6,7 +6,7 @@ using UnityEngine;
 namespace DataModel
 {
     /// <summary>
-    /// Данные задачи о перемещение объекта за пределы заданной области
+    /// Task data about moving an object outside the area
     /// </summary>
     public class OutOfBoxTaskData : TaskData
     {
@@ -52,7 +52,7 @@ namespace DataModel
             }
             else
             {
-                throw new TypeLoadException($"Тип {value.GetType()} не может быть обработан!");
+                throw new TypeLoadException($"Type {value.GetType()} cannot be processed!");
             }
         }
     }

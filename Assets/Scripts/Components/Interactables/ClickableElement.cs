@@ -20,10 +20,10 @@ namespace Components
             }
             else
             {
-                Debug.LogError("RotatableElement : DeviceController не найден");
+                Debug.LogError("RotatableElement : DeviceController wasn't found");
             }
 
-            // Начальные установки анимации
+            // Initial animation settings
             var animator = GetComponent<Animator>();
             if(animator != null)
             {

@@ -4,21 +4,18 @@ using UnityEngine;
 
 namespace DataModel
 {
-    /// <summary>
-    /// Класс для проверки возможности работы с выбранными элементами
-    /// </summary>
     public class TaskChecker
     {
         /// <summary>
-        /// Проверка на вхождение объекта в текущую задачу
+        /// Checking if an object is included in the current task
         /// </summary>
-        /// <param name="deviceElement">Выбранный элемент</param>
-        /// <param name="task">Текущая задача</param>
+        /// <param name="deviceElement">Selected element</param>
+        /// <param name="task">Current task</param>
         public static bool CheckIfElementInTask(DeviceElement deviceElement, Task task)
         {
             foreach (var taskElement in task.TaskElements)
             {
-                // Смотрим только по невыполненным задачам
+                // Look only at outstanding tasks
                 if (!taskElement.IsDone)
                 {
                     if (taskElement.Element == deviceElement)
@@ -30,9 +27,9 @@ namespace DataModel
         }
 
         /// <summary>
-        /// Проверка завершенности задачи типа Task
+        /// Checking the completion of a Task
         /// </summary>
-        /// <param name="task">Задача из массива задач</param>
+        /// <param name="task">Task from task array</param>
         public static bool CheckIfTaskIsDone(Task task)
         {
             int isDoneCount = 0;

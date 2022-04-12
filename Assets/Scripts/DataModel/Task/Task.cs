@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DataModel
 {
     /// <summary>
-    /// Единица сценария, описывающая элемент, его целевое состояние и порядок выполнения
+    /// A script unit that describes an element, its target state, and execution order
     /// </summary>
     public class Task
     {

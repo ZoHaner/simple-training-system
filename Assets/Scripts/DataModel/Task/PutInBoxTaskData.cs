@@ -6,7 +6,7 @@ using UnityEngine;
 namespace DataModel
 {
     /// <summary>
-    /// Данные задачи о перемещении объекта в заданную область
+    /// Task data about moving an object to a given area
     /// </summary>
     public class PutInBoxTaskData : TaskData
     {
@@ -51,7 +51,7 @@ namespace DataModel
             }
             else
             {
-                throw new TypeLoadException($"Тип {value.GetType()} не может быть обработан!");
+                throw new TypeLoadException($"Type {value.GetType()} cannot be processed!");
             }
         }
     }

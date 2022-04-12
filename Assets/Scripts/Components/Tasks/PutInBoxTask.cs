@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Components
 {
     /// <summary>
-    /// Задача для установки объекта в заданную область
+    /// Task to put an object in area
     /// </summary>
     [RequireComponent(typeof(MoveableElement))]
     public class PutInBoxTask : Task
     {
-        [Header("Задание - поместить в область с габаритами:")]
+        [Header("Task - put an object in area:")]
         [SerializeField] private float minX;
         [SerializeField] private float maxX;
         [SerializeField] private float minY;

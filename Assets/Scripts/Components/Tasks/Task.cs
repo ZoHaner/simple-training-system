@@ -6,7 +6,7 @@ namespace Components
 {
     public abstract class Task : MonoBehaviour
     {
-        [Header("Параметры задачи:")]
+        [Header("Task parameters:")]
         [SerializeField] private uint executionOrder;
         [TextArea]
         [SerializeField] private string description;

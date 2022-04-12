@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class SessionView : MonoBehaviour
 {
-    [Header("Поля")]
+    [Header("Text fields")]
     [SerializeField] private Text DescriptionText;
     [SerializeField] private Text FullTimeText;
     [SerializeField] private Text ErrorsCountText;
 
-    [Header("Окна")]
+    [Header("Screens")]
     [SerializeField] private GameObject ErrorScreen;
     [SerializeField] private GameObject SessionScreen;
     [SerializeField] private GameObject SessionEndScreen;
@@ -22,7 +22,7 @@ public class SessionView : MonoBehaviour
 
     public void SetFullTime(string time)
     {
-        FullTimeText.text = time + " c.";
+        FullTimeText.text = time + " s.";
     }
     public void SetErrorsCount(string errorsCount)
     {

@@ -23,7 +23,7 @@ public class RotatableElement : InteractableElement
         }
         else
         {
-            Debug.LogError($"RotatableElement : DeviceController не найден");
+            Debug.LogError($"RotatableElement : DeviceController wasn't found");
         }
 
         startRotation = transform.eulerAngles;

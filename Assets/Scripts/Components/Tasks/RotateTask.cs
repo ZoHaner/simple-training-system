@@ -7,7 +7,7 @@ namespace Components
     [RequireComponent(typeof(RotatableElement))]
     public class RotateTask : Task
     {
-        [Header("Задание:")]
+        [Header("Task:")]
         [SerializeField] private Axis rotationAxis;
         [SerializeField] private Operator _operator;
         [SerializeField] private float targetValue;

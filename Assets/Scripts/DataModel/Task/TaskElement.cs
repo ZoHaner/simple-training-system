@@ -38,7 +38,7 @@ namespace DataModel
                     IsDone = o.IsDone(GetPositionProperty().Position);
                     break;
                 default:
-                    throw new TypeLoadException($"Тип {Task.GetType()} не может быть обработан!");
+                    throw new TypeLoadException($"Type {Task.GetType()} cannot be processed!");
             }
 
             return IsDone;
@@ -55,7 +55,7 @@ namespace DataModel
                 }
             }
 
-            throw new System.Exception("У элемента нет свойства ButtonProperty!");
+            throw new System.Exception("Element doesn't have ButtonProperty!");
         }
 
         private PositionProperty GetPositionProperty()
@@ -69,7 +69,7 @@ namespace DataModel
                 }
             }
 
-            throw new System.Exception("У элемента нет свойства PositionProperty!");
+            throw new System.Exception("Element doesn't have ButtonProperty!");
         }
 
         private RotationProperty GetRotationProperty()
@@ -83,7 +83,7 @@ namespace DataModel
                 }
             }
 
-            throw new System.Exception("У элемента нет свойства RotationProperty!");
+            throw new System.Exception("Element doesn't have ButtonProperty!");
         }
     }
 }

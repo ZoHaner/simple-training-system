@@ -8,7 +8,7 @@ namespace Components
     [RequireComponent(typeof(ClickableElement))]
     public class ClickTask : Task
     {
-        [Header("Задание:")]
+        [Header("Task:")]
         [SerializeField] private ButtonState targetState;
 
         public ButtonState GetTargetState()

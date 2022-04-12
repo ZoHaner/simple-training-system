@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Components
 {
     /// <summary>
-    /// Задача для перемещение объекта за пределы заданной области
+    /// Task to move an object outside a given area
     /// </summary>
     [RequireComponent(typeof(MoveableElement))]
     public class OutOfBoxTask : Task
     {
-        [Header("Задание - переместить за пределы области:")]
+        [Header("Task - move out of area:")]
         [SerializeField] private float minX;
         [SerializeField] private float maxX;
         [SerializeField] private float minY;

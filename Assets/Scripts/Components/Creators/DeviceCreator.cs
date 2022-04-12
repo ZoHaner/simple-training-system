@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Создает объекты устройств из префабов
+/// Creates device object from prefab
 /// </summary>
 public class DeviceCreator : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class DeviceCreator : MonoBehaviour
         }
         else
         {
-            throw new NullReferenceException("DeviceCreator : SessionController не найден!");
+            throw new NullReferenceException("DeviceCreator : SessionController wasn't found!");
         }
     }
 
@@ -36,7 +36,7 @@ public class DeviceCreator : MonoBehaviour
         }
         else
         {
-            throw new IndexOutOfRangeException("DeviceCreator : Префаба с таким индексом не существует!");
+            throw new IndexOutOfRangeException($"DeviceCreator : Prefab with index '{index}' doesn't exist!");
         }
     }
 

@@ -42,7 +42,7 @@ namespace DataModel
             }
             else
             {
-                throw new TypeLoadException($"Тип {value.GetType()} не может быть обработан!");
+                throw new TypeLoadException($"Type {value.GetType()} cannot be processed!");
             }
         }
     }

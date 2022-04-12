@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Преобразователь движения мыши в изменение позиции и вращения объекта
+/// Converter of mouse movement to change of position and rotation of an object
 /// </summary>
 public class ActionConvertor
 {
     /// <summary>
-    /// Преобразование движения мыши в изменение позиции
+    /// Convert mouse movement to position change
     /// </summary>
-    /// <param name="mouseDelta"></param>
-    /// <returns></returns>
     public static Vector3 ConvertToDeltaPosition(Vector2 mouseDelta)
     {
         float deltaX = mouseDelta.x * 0.005f;
@@ -21,10 +19,8 @@ public class ActionConvertor
     }
 
     /// <summary>
-    /// Преобразование движения мыши в изменение вращения объекта
+    /// ПConvert mouse movement to rotation change
     /// </summary>
-    /// <param name="mouseDelta"></param>
-    /// <returns></returns>
     public static Vector3 ConvertToDeltaRotation(Vector2 mouseDelta)
     {
         float deltaX = mouseDelta.y * 0.1f;

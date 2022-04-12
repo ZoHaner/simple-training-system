@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DataModel
 {
     /// <summary>
-    /// Базовый класс для всех частей устройства
+    /// Base class for all device parts
     /// </summary>
     public class DeviceElement
     {
