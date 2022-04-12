@@ -14,7 +14,6 @@ namespace DataModel.Task
         private Vector3 maxValues;
         private bool[] ignoredAxis;
 
-
         public OutOfBoxTaskData(OutOfBoxTask outOfBoxTask)
         {
             minValues = outOfBoxTask.GetMinValues();

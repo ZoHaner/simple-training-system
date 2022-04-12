@@ -11,6 +11,7 @@ namespace Components.Creators
     public class DeviceCreator : MonoBehaviour
     {
         [SerializeField] private GameObject[] devicePrefabs;
+        
         private GameObject deviceObject;
         private DeviceController deviceController;
 

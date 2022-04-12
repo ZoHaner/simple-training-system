@@ -11,10 +11,10 @@ namespace Controllers
 {
     public class DeviceController : MonoBehaviour
     {
-        private IDeviceOperations model;
         [SerializeField] private DeviceView view;
 
         private Dictionary<string, GameObject> sceneElements = new Dictionary<string, GameObject>();
+        private IDeviceOperations model;
 
         public void SetModel(IDeviceOperations model)
         {

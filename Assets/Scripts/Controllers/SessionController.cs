@@ -6,8 +6,9 @@ namespace Controllers
 {
     public class SessionController : MonoBehaviour
     {
-        private ISessionCallbacks model;
         [SerializeField] private SessionView sessionView;
+        
+        private ISessionCallbacks model;
 
         public void SetModel(ISessionCallbacks model)
         {

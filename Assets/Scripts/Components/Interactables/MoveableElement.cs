@@ -5,9 +5,6 @@ namespace Components.Interactables
 {
     public class MoveableElement : InteractableElement
     {
-        private DeviceController deviceController;
-        private Vector3 startPosition;
-
         [SerializeField] private bool lockX;
         [SerializeField] private bool lockY;
         [SerializeField] private bool lockZ;
@@ -15,6 +12,9 @@ namespace Components.Interactables
         [SerializeField] private float minY, maxY;
         [SerializeField] private float minZ, maxZ;
 
+        private DeviceController deviceController;
+        private Vector3 startPosition;
+        
         private void Awake()
         {
             var controller = FindObjectOfType<DeviceController>();
